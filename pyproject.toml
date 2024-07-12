@@ -17,6 +17,7 @@ aiogram = "^3.10.0"
 pydantic = "^2.8.2"
 configloader = { git = "https://gitea.d0gied.ru/d0gied/configloader" }
 requests = "^2.32.3"
+fastapi = {extras = ["uvicorn"], version = "^0.111.0"}
 
 
 [build-system]
