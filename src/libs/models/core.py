@@ -1,27 +1,59 @@
 from pydantic import BaseModel, Field
 
+
 class Coordinate(BaseModel):
-  x: int = Field(..., examples=[1])
-  y: int = Field(..., examples=[1])
+    x: int = Field(..., examples=[1])
+    y: int = Field(..., examples=[1])
+
 
 class AttackCommand(BaseModel):
-  block_id: str = Field(..., alias="blockId", examples=["f47ac10b-58cc-0372-8562-0e02b2c3d479"])
-  target: Coordinate = Field(..., examples=[{"x": 1, "y": 1}])
+    blockId: str = Field(
+        ..., alias="block_id", examples=["f47ac10b-58cc-0372-8562-0e02b2c3d479"]
+    )
+    target: Coordinate = Field(..., examples=[{"x": 1, "y": 1}])
+
 
 class BuildCommand(Coordinate):
-  pass
+    pass
+
 
 class CommandPayload(BaseModel):
-  attack: list[AttackCommand] = Field(..., examples=[{"blockId": "f47ac10b-58cc-0372-8562-0e02b2c3d479", "target": {"x": 1, "y": 1}}])
-  build: list[BuildCommand] = Field(..., examples=[{"x": 1, "y": 1}])
-  move_base: Coordinate = Field(..., alias="moveBase", examples=[{"x": 1, "y": 1}])
+    attack: list[AttackCommand] = Field(
+        ...,
+        examples=[
+            {
+                "blockId": "f47ac10b-58cc-0372-8562-0e02b2c3d479",
+                "target": {"x": 1, "y": 1},
+            }
+        ],
+    )
+    build: list[BuildCommand] = Field(..., examples=[{"x": 1, "y": 1}])
+    moveBase: Coordinate = Field(..., alias="move_base", examples=[{"x": 1, "y": 1}])
+
 
 class Response(BaseModel): ...
 
+
 class ErrorResponse(Response):
-  err_code: int = Field(..., alias="errCode", examples=[22])
-  error: str = Field(..., examples=["description of the error"])
+    errCode: int = Field(..., alias="err_code", examples=[22])
+    error: str = Field(..., examples=["description of the error"])
+
 
 class CommandResponse(Response):
-  accepted_commands: CommandPayload = Field(..., alias="acceptedCommands", examples=[{"attack": [{"blockId": "f47ac10b-58cc-0372-8562-0e02b2c3d479", "target": {"x": 1, "y": 1}}], "build": [{"x": 1, "y": 1}], "moveBase": {"x": 1, "y": 1}}])
-  errors: list[str] = Field(..., examples=["coordinate at {0 0} is already occupied"])
+    acceptedCommands: CommandPayload = Field(
+        ...,
+        alias="accepted_commands",
+        examples=[
+            {
+                "attack": [
+                    {
+                        "blockId": "f47ac10b-58cc-0372-8562-0e02b2c3d479",
+                        "target": {"x": 1, "y": 1},
+                    }
+                ],
+                "build": [{"x": 1, "y": 1}],
+                "moveBase": {"x": 1, "y": 1},
+            }
+        ],
+    )
+    errors: list[str] = Field(..., examples=["coordinate at {0 0} is already occupied"])
