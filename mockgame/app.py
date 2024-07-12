@@ -34,7 +34,7 @@ def participate():
     return JSONResponse({"startsInSec": 300}, status_code=200)
 
 
-@app.get("play/zombidef/units")
+@app.get("/play/zombidef/units")
 def units():
     return JSONResponse(
         {

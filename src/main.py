@@ -17,11 +17,11 @@ if __name__ == "__main__":
             CommandPayload(
                 attack=[
                     AttackCommand(
-                        block_id="f47ac10b-58cc-0372-8562-0e02b2c3d479",
+                        blockId="f47ac10b-58cc-0372-8562-0e02b2c3d479",
                         target=Coordinate(x=1, y=1),
                     )
                 ],
                 build=[],
-                move_base=Coordinate(x=1, y=1),
+                moveBase=Coordinate(x=1, y=1),
             )
         )
