@@ -98,7 +98,7 @@ def world():
     )
 
 
-@app.get("/play/zombidef")
+@app.get("/rounds/zombidef")
 def zombidef():
     return JSONResponse(
         {

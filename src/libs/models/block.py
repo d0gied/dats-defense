@@ -1,6 +1,5 @@
 from pydantic import BaseModel, Field
-from .cell import Cell
-from .core import Coordinate
+from .cell import Cell, Coordinate
 
 
 class Block(Cell):

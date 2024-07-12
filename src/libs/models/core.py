@@ -1,10 +1,8 @@
 from pydantic import BaseModel, Field
-
-
-class Coordinate(BaseModel):
-    x: int = Field(..., examples=[1])
-    y: int = Field(..., examples=[1])
-
+from .block import Base, EnemyBase
+from .player import Player
+from .zombie import Zombie, ZPot
+from .cell import Coordinate
 
 class AttackCommand(BaseModel):
     block_id: str = Field(
@@ -57,3 +55,34 @@ class CommandResponse(Response):
         ],
     )
     errors: list[str] = Field(..., examples=["coordinate at {0 0} is already occupied"])
+
+class ParticipateResponse(Response):
+    starts_in_sec: int = Field(..., alias="startsInSec", examples=[300])
+
+
+class UnitsRepsonse(Response):
+    base: list[Base] = Field(...)
+    enemy_blocks: list[EnemyBase] = Field(..., alias="enemyBlocks")
+    player: Player = Field(...)
+    realm_name: str = Field(..., alias="realmName", examples=["map1"])
+    turn: int = Field(..., examples=[1])
+    turn_ends_in_ms: int = Field(..., alias="turnEndsInMs", examples=[1000])
+    zombies: list[Zombie] = Field(...)
+
+
+class WorldResponse(Response):
+    zpots: list[ZPot] = Field(...)
+
+class Round(BaseModel):
+  duration: int = Field(..., examples=[60])
+  end_at: str = Field(..., alias="endAt", examples=["2021-10-10T10:00:00Z"])
+  name: str = Field(..., examples=["round1"])
+  repeat: int = Field(..., examples=[1])
+  start_at: str = Field(..., alias="startAt", examples=["2021-10-10T10:00:00Z"])
+  status: str = Field(..., examples=["active"])
+
+
+class RoundsResponse(BaseModel):
+    game_name: str = Field(..., alias="gameName", examples=["defense"])
+    now: str = Field(..., examples=["2021-10-10T10:00:00Z"])
+    rounds: list[Round] = Field(...)

@@ -8,6 +8,18 @@ parser = ArgumentParser(description="Big Data Small Memory")
 parser.add_argument(
     "--command-test", action="store_true", help="Send a test command to the game server"
 )
+parser.add_argument(
+    "--participate-test", action="store_true", help="Send a test participate request to the game server"
+)
+parser.add_argument(
+    "--units-test", action="store_true", help="Send a test units request to the game server"
+)
+parser.add_argument(
+    "--world-test", action="store_true", help="Send a test world request to the game server"
+)
+parser.add_argument(
+    "--rounds-test", action="store_true", help="Send a test rounds request to the game server"
+)
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -25,3 +37,15 @@ if __name__ == "__main__":
                 moveBase=Coordinate(x=1, y=1),
             )
         )
+    if args.participate_test:
+        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game._participate()
+    if args.units_test:
+        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game._units()
+    if args.world_test:
+        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game._world()
+    if args.rounds_test:
+        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game._rounds()

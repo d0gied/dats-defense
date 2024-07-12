@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from .cell import Cell
 
 
-class Zoombie(Cell):
+class Zombie(Cell):
     attack: int = Field(..., examples=[1])
     direction: str = Field(..., examples=["up"])
     health: int = Field(..., examples=[1])
@@ -12,5 +12,5 @@ class Zoombie(Cell):
     wait_turns: int = Field(..., alias="waitTurns", examples=[1])
 
 
-class ZPots(Cell):
+class ZPot(Cell):
     type: str = Field(..., examples=["default"])
