@@ -15,7 +15,7 @@ class Game:
 
     def _command(self, payload: CommandPayload) -> CommandResponse | ErrorResponse:
         response = post(
-            self.api_base_url + "zombidef/command", json=payload.model_dump()
+            self.api_base_url + "play/zombidef/command", json=payload.model_dump()
         )
         if response.status_code != 200:
             return ErrorResponse.model_validate(response.json())
