@@ -1,6 +1,10 @@
 # dats-defense
 Big Data Small Memory
 
+## Requirements
+
+- Python 3.12
+
 ## Setup
 
 .env file
