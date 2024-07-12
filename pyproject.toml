@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "dats-defense"
+version = "0.1.0"
+description = ""
+authors = ["d0gied <german.n.u@mail.ru>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.pyright]
+venv = ".venv"
+venvPath = "."
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiogram = "^3.10.0"
+pydantic = "^2.8.2"
+configloader = { git = "https://gitea.d0gied.ru/d0gied/configloader" }
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
