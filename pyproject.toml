@@ -16,6 +16,7 @@ python = "^3.12"
 aiogram = "^3.10.0"
 pydantic = "^2.8.2"
 configloader = { git = "https://gitea.d0gied.ru/d0gied/configloader" }
+requests = "^2.32.3"
 
 
 [build-system]
