@@ -7,8 +7,8 @@ class Coordinate(BaseModel):
 
 
 class AttackCommand(BaseModel):
-    blockId: str = Field(
-        ..., alias="block_id", examples=["f47ac10b-58cc-0372-8562-0e02b2c3d479"]
+    block_id: str = Field(
+        ..., alias="blockId", examples=["f47ac10b-58cc-0372-8562-0e02b2c3d479"]
     )
     target: Coordinate = Field(..., examples=[{"x": 1, "y": 1}])
 
@@ -28,21 +28,21 @@ class CommandPayload(BaseModel):
         ],
     )
     build: list[BuildCommand] = Field(..., examples=[{"x": 1, "y": 1}])
-    moveBase: Coordinate = Field(..., alias="move_base", examples=[{"x": 1, "y": 1}])
+    move_base: Coordinate = Field(..., alias="moveBase", examples=[{"x": 1, "y": 1}])
 
 
 class Response(BaseModel): ...
 
 
 class ErrorResponse(Response):
-    errCode: int = Field(..., alias="err_code", examples=[22])
+    err_code: int = Field(..., alias="errCode", examples=[22])
     error: str = Field(..., examples=["description of the error"])
 
 
 class CommandResponse(Response):
-    acceptedCommands: CommandPayload = Field(
+    accepted_commands: CommandPayload = Field(
         ...,
-        alias="accepted_commands",
+        alias="acceptedCommands",
         examples=[
             {
                 "attack": [

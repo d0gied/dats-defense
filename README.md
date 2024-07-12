@@ -24,3 +24,12 @@ poetry install
 ```bash
 poetry run python src/main.py
 ```
+
+```bash
+poetry run python src/main.py --command-test
+```
+
+```bash
+# /mockgame
+poetry run uvicorn app:app
+```
