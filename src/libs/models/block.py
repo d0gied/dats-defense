@@ -5,7 +5,7 @@ from .core import Coordinate
 class Block(Cell):
     attack: int = Field(..., examples=[1])
     health: int = Field(..., examples=[1])
-    is_head: bool = Field(..., examples=[True])
+    is_head: bool = Field(..., alias="isHead", examples=[True])
     last_attack: Coordinate = Field(..., alias="lastAttack", examples=[Coordinate(x=1, y=1)])
 
 class Base(Block):
