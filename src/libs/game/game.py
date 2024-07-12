@@ -1,5 +1,5 @@
 from config import Config
-from ..models.core import CommandPayload, CommandSuccess, CommandError, CommandResponse
+from ..models.core import CommandPayload, CommandResponse, ErrorResponse
 from typing import Any
 from requests import post, get, put, Session
 import urllib3
@@ -12,11 +12,11 @@ class Game:
   ) -> None:
     self.api_base_url = api_base_url.strip("/") + "/"
 
-  def _command(self, payload: CommandPayload) -> CommandResponse:
+  def _command(self, payload: CommandPayload) -> CommandResponse | ErrorResponse
     response = post(self.api_base_url + "zombidef/command", json=payload.model_dump())
     if response.status_code != 200:
-      return CommandError.model_validate(response.json())
-    return CommandSuccess.model_validate(response.json())
+      return ErrorResponse.model_validate(response.json())
+    return CommandResponse.model_validate(response.json())
 
   def _participate(self) -> None: ...
 
