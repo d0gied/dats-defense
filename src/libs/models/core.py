@@ -1,5 +1,5 @@
-from typing import Optional
-from pydantic import BaseModel, Field
+from typing import Optional, List
+from pydantic import BaseModel, Field, conlist, validator
 from .block import Base, EnemyBase
 from .player import Player
 from .zombie import Zombie, ZPot
@@ -31,8 +31,9 @@ class CommandPayload(BaseModel):
     move_base: Coordinate = Field(..., alias="moveBase", examples=[{"x": 1, "y": 1}])
 
 
-class Response(BaseModel): ...
-
+class Response(BaseModel):
+    class Config:
+        extra = "allow"
 
 class ErrorResponse(Response):
     err_code: int = Field(..., alias="errCode", examples=[22])
@@ -65,12 +66,24 @@ class ParticipateResponse(Response):
 
 class UnitsRepsonse(Response):
     base: list[Base] = Field(...)
-    enemy_blocks: list[EnemyBase] = Field(..., alias="enemyBlocks")
+    enemy_blocks: Optional[list[EnemyBase]] = Field(default_factory=list, alias="enemyBlocks")
     player: Player = Field(...)
     realm_name: str = Field(..., alias="realmName", examples=["map1"])
     turn: int = Field(..., examples=[1])
     turn_ends_in_ms: int = Field(..., alias="turnEndsInMs", examples=[1000])
-    zombies: list[Zombie] = Field(...)
+    zombies: Optional[list[Zombie]] = Field(default_factory=list)
+
+    @validator("base", pre=True, always=True)
+    def base_val(cls, v):
+        return v or []
+
+    @validator("enemy_blocks", pre=True, always=True)
+    def enemy_blocks_val(cls, v):
+        return v or []
+
+    @validator("zombies", pre=True, always=True)
+    def zombies_val(cls, v):
+        return v or []
 
 
 class WorldResponse(Response):
