@@ -1,0 +1,3346 @@
+{
+    "world": {
+        "zpots": [
+            {
+                "x": 535,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 227,
+                "type": "default"
+            },
+            {
+                "x": 533,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 537,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 539,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 534,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 218,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 214,
+                "type": "default"
+            },
+            {
+                "x": 536,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 212,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 207,
+                "type": "default"
+            },
+            {
+                "x": 538,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 208,
+                "type": "default"
+            },
+            {
+                "x": 527,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 525,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 217,
+                "type": "default"
+            },
+            {
+                "x": 526,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 532,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 213,
+                "type": "default"
+            },
+            {
+                "x": 528,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 527,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 228,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 219,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 216,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 224,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 211,
+                "type": "default"
+            },
+            {
+                "x": 525,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 220,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 222,
+                "type": "default"
+            },
+            {
+                "x": 533,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 535,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 538,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 537,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 526,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 215,
+                "type": "default"
+            },
+            {
+                "x": 530,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 529,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 529,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 226,
+                "type": "default"
+            },
+            {
+                "x": 531,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 209,
+                "type": "default"
+            },
+            {
+                "x": 539,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 528,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 532,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 530,
+                "y": 225,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 223,
+                "type": "default"
+            },
+            {
+                "x": 536,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 531,
+                "y": 210,
+                "type": "default"
+            },
+            {
+                "x": 540,
+                "y": 221,
+                "type": "default"
+            },
+            {
+                "x": 534,
+                "y": 225,
+                "type": "default"
+            }
+        ],
+        "realmName": "test-day2-9"
+    },
+    "steps": [
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 3,
+            "turn_ends_in_ms": 1443,
+            "zombies": [
+                {
+                    "x": 536,
+                    "y": 207,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "ea622f2b-7a93-48f9-ba98-a9d848c33fe9",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 222,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 4,
+            "turn_ends_in_ms": 1257,
+            "zombies": [
+                {
+                    "x": 538,
+                    "y": 221,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 5,
+            "turn_ends_in_ms": 1256,
+            "zombies": [
+                {
+                    "x": 539,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 6,
+            "turn_ends_in_ms": 1274,
+            "zombies": [
+                {
+                    "x": 537,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 219,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 211,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8b2d75ae-b949-4769-80de-af5f53161252",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 532,
+                    "y": 226,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8ad855a6-82a7-4696-83e4-67552ed1c6dc",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 7,
+            "turn_ends_in_ms": 1261,
+            "zombies": [
+                {
+                    "x": 539,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 218,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 212,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8b2d75ae-b949-4769-80de-af5f53161252",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 535,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 531,
+                    "y": 228,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "8ad855a6-82a7-4696-83e4-67552ed1c6dc",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 8,
+            "turn_ends_in_ms": 1258,
+            "zombies": [
+                {
+                    "x": 538,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 533,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 217,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 213,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8b2d75ae-b949-4769-80de-af5f53161252",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 529,
+                    "y": 227,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8ad855a6-82a7-4696-83e4-67552ed1c6dc",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 9,
+            "turn_ends_in_ms": 1253,
+            "zombies": [
+                {
+                    "x": 538,
+                    "y": 216,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 531,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8b2d75ae-b949-4769-80de-af5f53161252",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 10,
+            "turn_ends_in_ms": 1252,
+            "zombies": [
+                {
+                    "x": 537,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 536,
+                    "y": 209,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "2d248650-5e6f-4e1a-94c8-85201fc307a0",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 536,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 529,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8b2d75ae-b949-4769-80de-af5f53161252",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 529,
+                    "y": 227,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "8ad855a6-82a7-4696-83e4-67552ed1c6dc",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 11,
+            "turn_ends_in_ms": 1263,
+            "zombies": [
+                {
+                    "x": 536,
+                    "y": 209,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "2d248650-5e6f-4e1a-94c8-85201fc307a0",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 527,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 216,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "8b2d75ae-b949-4769-80de-af5f53161252",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 535,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 209,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "8f5e69ad-6710-41a1-a44c-bfac4d7929b4",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 12,
+            "turn_ends_in_ms": 1252,
+            "zombies": [
+                {
+                    "x": 538,
+                    "y": 213,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 208,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "8f5e69ad-6710-41a1-a44c-bfac4d7929b4",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 208,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "2d248650-5e6f-4e1a-94c8-85201fc307a0",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 536,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 535,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 525,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 13,
+            "turn_ends_in_ms": 1238,
+            "zombies": [
+                {
+                    "x": 538,
+                    "y": 212,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 207,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "8f5e69ad-6710-41a1-a44c-bfac4d7929b4",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 523,
+                    "y": 215,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "0af6dfaa-eef1-4c34-9092-2367f237b8e8",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 208,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "2d248650-5e6f-4e1a-94c8-85201fc307a0",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 533,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 14,
+            "turn_ends_in_ms": 1240,
+            "zombies": [
+                {
+                    "x": 537,
+                    "y": 207,
+                    "attack": 1,
+                    "direction": "right",
+                    "health": 5,
+                    "id": "c5c9809b-4aad-45de-8049-4dbba159e97f",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "2d248650-5e6f-4e1a-94c8-85201fc307a0",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 538,
+                    "y": 224,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "2b8950bf-407e-4033-919c-4110b83173e6",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 532,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 211,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "385f3dbd-ff38-4ad6-9310-c9768d92d17f",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 535,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 533,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 15,
+            "turn_ends_in_ms": 1254,
+            "zombies": [
+                {
+                    "x": 532,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 222,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "2b8950bf-407e-4033-919c-4110b83173e6",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 208,
+                    "attack": 1,
+                    "direction": "down",
+                    "health": 5,
+                    "id": "c5c9809b-4aad-45de-8049-4dbba159e97f",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "2d248650-5e6f-4e1a-94c8-85201fc307a0",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 535,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 531,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 16,
+            "turn_ends_in_ms": 1244,
+            "zombies": [
+                {
+                    "x": 536,
+                    "y": 209,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "bf42fc6b-e2e7-4939-9b68-b6720e3802a4",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 531,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 530,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 538,
+                    "y": 220,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "2b8950bf-407e-4033-919c-4110b83173e6",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 17,
+            "turn_ends_in_ms": 1232,
+            "zombies": [
+                {
+                    "x": 529,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 530,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 525,
+                    "y": 209,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "4677fd39-0025-47e6-8c81-e5f187e7a238",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 207,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "bf42fc6b-e2e7-4939-9b68-b6720e3802a4",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 534,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 227,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "71be6449-91e6-4a50-af62-1163f9fd4458",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 538,
+                    "y": 218,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "2b8950bf-407e-4033-919c-4110b83173e6",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 18,
+            "turn_ends_in_ms": 1245,
+            "zombies": [
+                {
+                    "x": 528,
+                    "y": 209,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "e8a4f962-d6da-432d-b3db-22360cc558ce",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 538,
+                    "y": 216,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "2b8950bf-407e-4033-919c-4110b83173e6",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 528,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 533,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 539,
+                    "y": 227,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "71be6449-91e6-4a50-af62-1163f9fd4458",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 529,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 524,
+                    "y": 207,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "4677fd39-0025-47e6-8c81-e5f187e7a238",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 527,
+                    "y": 226,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "f3363cc8-528e-4322-bef8-ffe511430e4d",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 19,
+            "turn_ends_in_ms": 1247,
+            "zombies": [
+                {
+                    "x": 538,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 228,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "f3363cc8-528e-4322-bef8-ffe511430e4d",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 528,
+                    "y": 209,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "e8a4f962-d6da-432d-b3db-22360cc558ce",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 214,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "2b8950bf-407e-4033-919c-4110b83173e6",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 533,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 227,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "71be6449-91e6-4a50-af62-1163f9fd4458",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 535,
+                    "y": 226,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "37a6d7a6-bf28-46f6-9c8e-169e1d8e1cc0",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 209,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "f75f78ab-31d5-4560-ad1d-95a546ace366",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 527,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 528,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 20,
+            "turn_ends_in_ms": 1226,
+            "zombies": [
+                {
+                    "x": 538,
+                    "y": 212,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "2b8950bf-407e-4033-919c-4110b83173e6",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 528,
+                    "y": 208,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "e8a4f962-d6da-432d-b3db-22360cc558ce",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 537,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 526,
+                    "y": 228,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "f4697916-7856-4963-bb0c-b33aea756578",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 527,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 208,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "f75f78ab-31d5-4560-ad1d-95a546ace366",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 527,
+                    "y": 226,
+                    "attack": 7,
+                    "direction": "right",
+                    "health": 7,
+                    "id": "f3363cc8-528e-4322-bef8-ffe511430e4d",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 525,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "6081ac56-7f35-4692-ad48-5fda6f8e6a31",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 524,
+                    "y": 209,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "4677fd39-0025-47e6-8c81-e5f187e7a238",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 532,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 538,
+                    "y": 227,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "71be6449-91e6-4a50-af62-1163f9fd4458",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 535,
+                    "y": 227,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "37a6d7a6-bf28-46f6-9c8e-169e1d8e1cc0",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 532,
+                    "y": 226,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "7a03cebf-0a39-406a-9a2c-2416ef37d823",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 532,
+                    "y": 207,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "bf42fc6b-e2e7-4939-9b68-b6720e3802a4",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 21,
+            "turn_ends_in_ms": 1252,
+            "zombies": [
+                {
+                    "x": 539,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "a9d88bb8-b990-4973-a691-2f07bd572215",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "e114567d-205b-4ad1-bf97-cfa7bdb75459",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 525,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 523,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "4677fd39-0025-47e6-8c81-e5f187e7a238",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "69ded0bf-6062-406c-b0cc-1d43c94ec1d0",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 528,
+                    "y": 208,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "e8a4f962-d6da-432d-b3db-22360cc558ce",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 228,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "1404fd2e-0de5-42df-aec5-a01a55f43db3",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 207,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "f75f78ab-31d5-4560-ad1d-95a546ace366",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 228,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "e9c8f57f-2fbb-46cd-9965-89dd17d45c40",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 227,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "f4697916-7856-4963-bb0c-b33aea756578",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 227,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "71be6449-91e6-4a50-af62-1163f9fd4458",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 530,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "ed22605d-3a84-4a18-bf5f-1ed0ad7875f5",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 532,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 530,
+                    "y": 208,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "bf42fc6b-e2e7-4939-9b68-b6720e3802a4",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 524,
+                    "y": 213,
+                    "attack": 7,
+                    "direction": "right",
+                    "health": 7,
+                    "id": "6081ac56-7f35-4692-ad48-5fda6f8e6a31",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 535,
+                    "y": 228,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "37a6d7a6-bf28-46f6-9c8e-169e1d8e1cc0",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 533,
+                    "y": 228,
+                    "attack": 7,
+                    "direction": "right",
+                    "health": 7,
+                    "id": "7a03cebf-0a39-406a-9a2c-2416ef37d823",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 22,
+            "turn_ends_in_ms": 1254,
+            "zombies": [
+                {
+                    "x": 536,
+                    "y": 212,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "69ded0bf-6062-406c-b0cc-1d43c94ec1d0",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 227,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "1404fd2e-0de5-42df-aec5-a01a55f43db3",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 212,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "6081ac56-7f35-4692-ad48-5fda6f8e6a31",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 531,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 530,
+                    "y": 212,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "ed22605d-3a84-4a18-bf5f-1ed0ad7875f5",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 227,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "71be6449-91e6-4a50-af62-1163f9fd4458",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 526,
+                    "y": 226,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "f4697916-7856-4963-bb0c-b33aea756578",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 525,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 228,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "e9c8f57f-2fbb-46cd-9965-89dd17d45c40",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 524,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "e114567d-205b-4ad1-bf97-cfa7bdb75459",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 528,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "e8a4f962-d6da-432d-b3db-22360cc558ce",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 528,
+                    "y": 207,
+                    "attack": 7,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "bf42fc6b-e2e7-4939-9b68-b6720e3802a4",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                }
+            ]
+        },
+        {
+            "base": [
+                {
+                    "x": 534,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709f-8987-29c56fc76487",
+                    "range": 5
+                },
+                {
+                    "x": 534,
+                    "y": 217,
+                    "attack": 10,
+                    "health": 99,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-7095-a43d-7625b3032daa",
+                    "range": 5
+                },
+                {
+                    "x": 533,
+                    "y": 217,
+                    "attack": 40,
+                    "health": 300,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-708f-a752-fdfeef473c92",
+                    "range": 8
+                },
+                {
+                    "x": 533,
+                    "y": 218,
+                    "attack": 10,
+                    "health": 100,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190ab7b-41dd-709a-b285-169d48f779c0",
+                    "range": 5
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-9",
+            "turn": 23,
+            "turn_ends_in_ms": 1286,
+            "zombies": [
+                {
+                    "x": 530,
+                    "y": 211,
+                    "attack": 13,
+                    "direction": "down",
+                    "health": 9,
+                    "id": "910ed448-0997-4f4a-bca6-6d9e348434fa",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 213,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "69ded0bf-6062-406c-b0cc-1d43c94ec1d0",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 528,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 7,
+                    "id": "e8a4f962-d6da-432d-b3db-22360cc558ce",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 524,
+                    "y": 220,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d39d5171-a352-4aa3-b67d-a4ce0b97c139",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 523,
+                    "y": 214,
+                    "attack": 1,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "2e102383-6637-471e-9cfa-7cd18660151c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "e114567d-205b-4ad1-bf97-cfa7bdb75459",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 530,
+                    "y": 213,
+                    "attack": 7,
+                    "direction": "down",
+                    "health": 7,
+                    "id": "ed22605d-3a84-4a18-bf5f-1ed0ad7875f5",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 537,
+                    "y": 228,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "e9c8f57f-2fbb-46cd-9965-89dd17d45c40",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 538,
+                    "y": 226,
+                    "attack": 1,
+                    "direction": "up",
+                    "health": 5,
+                    "id": "1404fd2e-0de5-42df-aec5-a01a55f43db3",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 531,
+                    "y": 228,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 5,
+                    "id": "d11c5572-d87d-44d4-a0b1-3f671ac042d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 227,
+                    "attack": 7,
+                    "direction": "right",
+                    "health": 7,
+                    "id": "7a03cebf-0a39-406a-9a2c-2416ef37d823",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 227,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "71be6449-91e6-4a50-af62-1163f9fd4458",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 539,
+                    "y": 216,
+                    "attack": 13,
+                    "direction": "left",
+                    "health": 9,
+                    "id": "2437174f-2f72-47bd-afc7-1e1431ce0a67",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 524,
+                    "y": 211,
+                    "attack": 7,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "6081ac56-7f35-4692-ad48-5fda6f8e6a31",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 539,
+                    "y": 215,
+                    "attack": 13,
+                    "direction": "left",
+                    "health": 9,
+                    "id": "a3f77c6e-c8fd-498e-b32f-e5212b350fd4",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 536,
+                    "y": 207,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "c0baf1dd-e321-4d30-bdce-d26304264190",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                }
+            ]
+        }
+    ]
+}

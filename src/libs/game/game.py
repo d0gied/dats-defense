@@ -58,6 +58,7 @@ class Game:
 
         self._units_data: UnitsRepsonse | ErrorResponse | None = None
         self._world_data: WorldResponse | ErrorResponse | None = None
+        self._participate_data: ParticipateResponse | ErrorResponse | None = None
 
         self._extra_gold: int = 0 # for killing zombies
 
@@ -345,32 +346,38 @@ class Game:
         asyncio.run(self._run())
 
     async def _run(self, force=False) -> None:
-        logger.info("Game started")
 
-        self._units_data = self._units()
-        self._world_data = self._world()
-        if not self.units().base:
-            logger.error("No base found, Game over")
-            return
-        await self._start_func(self)
-        logger.info("Game loop started")
+        current_state = "UNKNOWN"
+        logger.info("Loop started")
+
         while True:
             self._units_data = self._units()
             self._world_data = self._world()
-            self._move_base = Coordinate(x=self.get_head().x, y=self.get_head().y)
+            self._participate_data = self._participate()
+            next_tick: float = 5
 
-            if not self.units().base and not force:
-                logger.error("No base found, Game over")
+            if isinstance(self._participate_data, ParticipateResponse):
+                current_state = "PREPARING"
+                logger.info("Preparing")
+                await self._waiting_func(self)
+
+            elif isinstance(self._world_data, WorldResponse):
+                self._attacks = []
+                self._builds = []
+                self._move_base = Coordinate(x=self.get_head().x, y=self.get_head().y)
+                self._do_command = False
+
+                if current_state != "RUNNING":
+                    await self._start_func(self)
+                    logger.info("Game started")
+                current_state = "RUNNING"
+                await self._loop_func(self)
+                self.push()
+
+                next_tick = self.units().turn_ends_in_ms / 1000
+            else:
+                logger.error(f"Error: {self._world_data.error}")
                 await self._dead_func(self)
-                return
-            await self._loop_func(self)
-            self.push()
-            self._attacks = []
-            self._builds = []
-            self._move_base = Coordinate(x=0, y=0)
-            self._do_command = False
 
-            next_tick = self.units().turn_ends_in_ms / 1000
             logger.info(f"Game loop ticked, next turn in {next_tick:.2f} seconds, sleeping for {next_tick + 0.1:.2f} seconds")
-
             await asyncio.sleep(next_tick + 0.1)
