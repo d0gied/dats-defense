@@ -28,7 +28,7 @@ class CommandPayload(BaseModel):
         ],
     )
     build: list[BuildCommand] = Field(..., examples=[{"x": 1, "y": 1}])
-    move_base: Coordinate = Field(..., alias="moveBase", examples=[{"x": 1, "y": 1}])
+    move_base: Coordinate | None = Field(..., alias="moveBase", examples=[{"x": 1, "y": 1}])
 
 
 class Response(BaseModel):

@@ -1,0 +1,805 @@
+{
+    "world": {
+        "zpots": [
+            {
+                "x": 133,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 163,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 168,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 147,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 157,
+                "type": "default"
+            },
+            {
+                "x": 143,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 152,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 149,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 155,
+                "type": "default"
+            },
+            {
+                "x": 134,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 160,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 151,
+                "type": "default"
+            },
+            {
+                "x": 145,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 158,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 153,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 167,
+                "type": "default"
+            },
+            {
+                "x": 138,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 142,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 149,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 140,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 144,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 166,
+                "type": "default"
+            },
+            {
+                "x": 136,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 147,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 161,
+                "type": "default"
+            },
+            {
+                "x": 146,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 137,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 162,
+                "type": "default"
+            },
+            {
+                "x": 148,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 139,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 156,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 159,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 154,
+                "type": "default"
+            },
+            {
+                "x": 135,
+                "y": 164,
+                "type": "default"
+            },
+            {
+                "x": 153,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 152,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 151,
+                "y": 165,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 150,
+                "y": 148,
+                "type": "default"
+            },
+            {
+                "x": 141,
+                "y": 150,
+                "type": "default"
+            },
+            {
+                "x": 132,
+                "y": 150,
+                "type": "default"
+            }
+        ],
+        "realmName": "test-day2-13"
+    },
+    "steps": [
+        {
+            "base": [
+                {
+                    "x": 143,
+                    "y": 158,
+                    "attack": 10,
+                    "health": 43,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190abc4-8306-75f2-a79e-8712d0f11421",
+                    "range": 5
+                },
+                {
+                    "x": 143,
+                    "y": 157,
+                    "attack": 10,
+                    "health": 49,
+                    "is_head": false,
+                    "last_attack": null,
+                    "id": "0190abc4-8306-75eb-8768-13c871df060a",
+                    "range": 5
+                },
+                {
+                    "x": 142,
+                    "y": 157,
+                    "attack": 40,
+                    "health": 262,
+                    "is_head": true,
+                    "last_attack": null,
+                    "id": "0190abc4-8306-75e6-93ee-b011813d428c",
+                    "range": 8
+                }
+            ],
+            "enemy_blocks": [],
+            "player": {
+                "enemy_block_kills": 0,
+                "game_ended_at": null,
+                "gold": 10,
+                "name": "Big Data Small Memory",
+                "points": 0,
+                "zombie_kills": 0
+            },
+            "realm_name": "test-day2-13",
+            "turn": 56,
+            "turn_ends_in_ms": 444,
+            "zombies": [
+                {
+                    "x": 139,
+                    "y": 153,
+                    "attack": 19,
+                    "direction": "up",
+                    "health": 11,
+                    "id": "85c6b346-063f-4d62-b97c-839bddd67a15",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 143,
+                    "y": 156,
+                    "attack": 19,
+                    "direction": "right",
+                    "health": 11,
+                    "id": "d88080ec-9664-4a77-a67d-fae353134307",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 143,
+                    "y": 166,
+                    "attack": 31,
+                    "direction": "down",
+                    "health": 15,
+                    "id": "063dac37-4043-4427-bca3-fced321179c9",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 151,
+                    "y": 162,
+                    "attack": 19,
+                    "direction": "left",
+                    "health": 11,
+                    "id": "37dad688-3138-433e-974c-30ad20cb444c",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 133,
+                    "y": 154,
+                    "attack": 25,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "6bdea0e0-6e1a-42eb-9241-aaa6d638cec4",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 151,
+                    "y": 163,
+                    "attack": 19,
+                    "direction": "right",
+                    "health": 11,
+                    "id": "6cd51d33-f00e-44b5-ba83-fe0e1ce1e5c8",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 146,
+                    "y": 154,
+                    "attack": 25,
+                    "direction": "up",
+                    "health": 13,
+                    "id": "e0df7acf-c6a4-4fd8-a55a-84dba2dbee3d",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 146,
+                    "y": 158,
+                    "attack": 25,
+                    "direction": "up",
+                    "health": 13,
+                    "id": "5860676a-18ba-4497-b5b5-9bda2398efbb",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 152,
+                    "y": 163,
+                    "attack": 19,
+                    "direction": "right",
+                    "health": 11,
+                    "id": "f1dee28b-8949-4163-9403-f7096bd51a22",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 134,
+                    "y": 160,
+                    "attack": 31,
+                    "direction": "left",
+                    "health": 15,
+                    "id": "8db4e4b1-3223-4c58-858b-f1389e926ac4",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 141,
+                    "y": 164,
+                    "attack": 13,
+                    "direction": "left",
+                    "health": 9,
+                    "id": "467613b4-099d-4220-87b8-2a7b4694f2da",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 145,
+                    "y": 159,
+                    "attack": 25,
+                    "direction": "right",
+                    "health": 13,
+                    "id": "07a71ea6-1c36-47e1-95ae-9150bdabe500",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 134,
+                    "y": 168,
+                    "attack": 31,
+                    "direction": "left",
+                    "health": 15,
+                    "id": "47b597e4-0dad-4436-9b80-ce525de73fe4",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 152,
+                    "y": 159,
+                    "attack": 25,
+                    "direction": "up",
+                    "health": 13,
+                    "id": "54611e0e-baf8-4d12-9b11-04ef0a2e9be1",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 148,
+                    "y": 156,
+                    "attack": 25,
+                    "direction": "left",
+                    "health": 13,
+                    "id": "4de9f87b-ac7e-4dc5-a4e5-67582d767e4f",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 139,
+                    "y": 163,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 9,
+                    "id": "079efbf0-1f20-4b23-8670-2e8cc5568b88",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 135,
+                    "y": 152,
+                    "attack": 25,
+                    "direction": "up",
+                    "health": 13,
+                    "id": "6a4fb5cd-fa57-44e6-a343-adcff5d30573",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 153,
+                    "y": 153,
+                    "attack": 25,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "8ff35120-5dc5-46d0-8669-6f8a9c15ad0d",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 139,
+                    "y": 166,
+                    "attack": 19,
+                    "direction": "down",
+                    "health": 11,
+                    "id": "3e4c5d1c-4b0b-4822-8d19-0bfbd9109627",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 147,
+                    "y": 150,
+                    "attack": 25,
+                    "direction": "right",
+                    "health": 3,
+                    "id": "7e4edc27-d137-4bff-a188-bb7969af7cd3",
+                    "speed": 3,
+                    "type": "chaos_knight",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 137,
+                    "y": 166,
+                    "attack": 25,
+                    "direction": "right",
+                    "health": 13,
+                    "id": "9601a2f9-b621-4a46-9a0e-16d943065dcc",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 138,
+                    "y": 168,
+                    "attack": 25,
+                    "direction": "up",
+                    "health": 13,
+                    "id": "363aad4c-11a7-4540-8013-4569c585b5c2",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 137,
+                    "y": 161,
+                    "attack": 25,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "d2f9f575-2ed6-4cc0-bf39-f9ba0110ae0c",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 134,
+                    "y": 166,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 15,
+                    "id": "deeb83d9-306a-44c6-bc69-8248cff85df0",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 143,
+                    "y": 161,
+                    "attack": 25,
+                    "direction": "right",
+                    "health": 13,
+                    "id": "248d24ab-9158-47cc-807c-b8c1ed8c0b56",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 138,
+                    "y": 151,
+                    "attack": 31,
+                    "direction": "down",
+                    "health": 15,
+                    "id": "f9416224-0f15-4b31-9a17-d2ff4cb260ac",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 149,
+                    "y": 150,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 13,
+                    "id": "f2ab6de6-ae1a-4e7c-bd17-f0a9ed9f5deb",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 150,
+                    "y": 167,
+                    "attack": 999999,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "2023562a-9589-4caf-976a-6137245f4633",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 133,
+                    "y": 164,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 13,
+                    "id": "29878395-8ae5-4267-97e4-698bc2d8027e",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 133,
+                    "y": 159,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 13,
+                    "id": "001894e2-cb78-4ca5-adbf-59c747df3b53",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 149,
+                    "y": 168,
+                    "attack": 25,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "4626bfdc-2205-4b52-99a3-fc00c87ff188",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 149,
+                    "y": 168,
+                    "attack": 19,
+                    "direction": "right",
+                    "health": 11,
+                    "id": "d809af2d-d1fd-4b9f-9f2b-4f932c47f042",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 143,
+                    "y": 162,
+                    "attack": 999999,
+                    "direction": "left",
+                    "health": 7,
+                    "id": "aa78c920-3a44-4faf-86fb-9f250e785f31",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 134,
+                    "y": 162,
+                    "attack": 25,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "a79e5f82-a452-4438-8433-df461ca07a45",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 149,
+                    "y": 160,
+                    "attack": 19,
+                    "direction": "right",
+                    "health": 11,
+                    "id": "7b287cd8-2b6d-4969-9ea7-19cd057f8674",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 144,
+                    "y": 150,
+                    "attack": 19,
+                    "direction": "up",
+                    "health": 11,
+                    "id": "0cf8c033-6ff8-4e11-a5d3-79142f94465c",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 145,
+                    "y": 164,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 15,
+                    "id": "f8330dc4-ded4-4755-a8f9-2fa4bb65a3d3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 147,
+                    "y": 159,
+                    "attack": 999999,
+                    "direction": "right",
+                    "health": 11,
+                    "id": "707ddbd7-3207-49b5-b970-3fa28495c46d",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 141,
+                    "y": 162,
+                    "attack": 13,
+                    "direction": "left",
+                    "health": 9,
+                    "id": "ea80cbee-d538-407a-aa92-211e3becdc81",
+                    "speed": 1,
+                    "type": "liner",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 144,
+                    "y": 161,
+                    "attack": 25,
+                    "direction": "right",
+                    "health": 13,
+                    "id": "9663d09a-85e4-4886-91df-abbcf52562ac",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 137,
+                    "y": 162,
+                    "attack": 999999,
+                    "direction": "right",
+                    "health": 13,
+                    "id": "35a81735-cf58-44a5-a67b-be2d34a04ec3",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 153,
+                    "y": 152,
+                    "attack": 25,
+                    "direction": "right",
+                    "health": 3,
+                    "id": "fca431a6-3289-41a7-8bf1-5cbb8afacbc1",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 146,
+                    "y": 153,
+                    "attack": 999999,
+                    "direction": "right",
+                    "health": 5,
+                    "id": "6155c891-bc5f-474e-a027-5d154dd5feaa",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 2
+                },
+                {
+                    "x": 136,
+                    "y": 149,
+                    "attack": 31,
+                    "direction": "up",
+                    "health": 15,
+                    "id": "430432de-367b-498e-a7d3-ef9f81deaf79",
+                    "speed": 2,
+                    "type": "fast",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 142,
+                    "y": 153,
+                    "attack": 999999,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "b05449f0-2138-4257-a6d1-d3b75c7f5242",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 152,
+                    "y": 167,
+                    "attack": 25,
+                    "direction": "down",
+                    "health": 13,
+                    "id": "547b898b-331f-46f4-8548-8ac7c1921b20",
+                    "speed": 1,
+                    "type": "bomber",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 148,
+                    "y": 160,
+                    "attack": 999999,
+                    "direction": "up",
+                    "health": 13,
+                    "id": "05ead181-e784-4102-bf76-a3906788a29b",
+                    "speed": 1,
+                    "type": "juggernaut",
+                    "wait_turns": 1
+                },
+                {
+                    "x": 135,
+                    "y": 153,
+                    "attack": 19,
+                    "direction": "right",
+                    "health": 11,
+                    "id": "e90a2743-bef6-4c84-9830-af131dbd6b44",
+                    "speed": 1,
+                    "type": "normal",
+                    "wait_turns": 1
+                }
+            ]
+        }
+    ]
+}

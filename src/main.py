@@ -72,7 +72,9 @@ if __name__ == "__main__":
         BASE_URL = "http://127.0.0.1:8000/"
 
     game = Game(api_base_url=BASE_URL)
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    loop.create_task(game._run())
+
 
     if args.participate:
         resp = game._participate()
@@ -87,21 +89,30 @@ if __name__ == "__main__":
         rounds = game._rounds()
         print(json.dumps(rounds.model_dump(), indent=4))
     if args.bot:
-        from bot import start as bot_start, loop as bot_loop
+        from bot import start as bot_start, loop as bot_loop, dead as bot_dead, waiting as bot_waiting
         game.start(bot_start)
         game.loop(bot_loop)
-        game.run()
+        game.dead(bot_dead)
+        game.waiting(bot_waiting)
     if args.daemon:
-        from daemon import start as bot_start, loop as bot_loop
+        from daemon import start as bot_start, loop as bot_loop, waiting as bot_waiting
         game.start(bot_start)
         game.loop(bot_loop)
-        loop.create_task(game._run())
-        # game.run()
+        game.waiting(bot_waiting)
     if args.api:
         from uvicorn import Config as UvicornConfig
         from uvicorn.server import Server
+        from fastapi.middleware.cors import CORSMiddleware
 
+        logger.info("Starting API")
         app = FastAPI()
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
         @app.get("/play/zombidef/units")
         async def units() -> UnitsRepsonse | ErrorResponse:
             return game._units_data # type: ignore
@@ -114,7 +125,7 @@ if __name__ == "__main__":
         async def participate() -> ParticipateResponse | ErrorResponse:
             return game._participate_data # type: ignore
 
-        config = UvicornConfig(app=app)
+        config = UvicornConfig(app=app, log_level="critical")
         server = Server(config)
         loop.create_task(server.serve())
 

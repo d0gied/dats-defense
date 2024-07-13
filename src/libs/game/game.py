@@ -12,7 +12,8 @@ from ..models.core import (
     AttackCommand,
     BuildCommand,
     Coordinate,
-    Base
+    Base,
+    ZPot
 )
 from typing import Any, Callable, Awaitable, Coroutine
 from requests import post, get, put, Session
@@ -33,7 +34,7 @@ def timing(func: Any) -> Any:
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         start_time = perf_counter()
         result = func(*args, **kwargs)
-        logger.info(f"{func.__name__} executed in {perf_counter() - start_time:.6f} seconds")
+        logger.debug(f"{func.__name__} executed in {perf_counter() - start_time:.6f} seconds")
         return result
 
     return wrapper
@@ -49,7 +50,7 @@ class Game:
         self._do_command: bool = False
         self._attacks: list[AttackCommand] = []
         self._builds: list[BuildCommand] = []
-        self._move_base: Coordinate = Coordinate(x=0, y=0)
+        self._move_base: Coordinate | None = None
 
         self._start_funcs: list[TAsyncGameFunc] = []
         self._loop_funcs: list[TAsyncGameFunc] = []
@@ -62,12 +63,14 @@ class Game:
 
         self._extra_gold: int = 0 # for killing zombies
 
-    def _command(self, payload: CommandPayload) -> CommandResponse:
+    def _command(self, payload: CommandPayload) -> CommandResponse | ErrorResponse:
         response = post(
             self._api_base_url + "play/zombidef/command",
             json=payload.model_dump(),
             headers={"X-Auth-Token": Config.Server.TOKEN},
         )
+        if not response.text:
+            return ErrorResponse(errCode=-1, error="No response")
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
             logger.debug(f"Error sending command: {resp}")
@@ -79,6 +82,8 @@ class Game:
             self._api_base_url + "play/zombidef/participate",
             headers={"X-Auth-Token": Config.Server.TOKEN},
         )
+        if not response.text:
+            return ErrorResponse(errCode=-1, error="No response")
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
             logger.debug(f"Error participating: {resp}")
@@ -90,6 +95,8 @@ class Game:
             self._api_base_url + "play/zombidef/units",
             headers={"X-Auth-Token": Config.Server.TOKEN},
         )
+        if not response.text:
+            return ErrorResponse(errCode=-1, error="No response")
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
@@ -102,6 +109,8 @@ class Game:
             self._api_base_url + "play/zombidef/world",
             headers={"X-Auth-Token": Config.Server.TOKEN},
         )
+        if not response.text:
+            return ErrorResponse(errCode=-1, error="No response")
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
@@ -314,6 +323,13 @@ class Game:
             raise Exception(f"Error: {self._world_data.error}")
         return self._world_data
 
+    def get_units_at(self, coord: Coordinate) -> list[EnemyBase | Base | Zombie | ZPot]:
+        return [
+            unit
+            for unit in self.units().base + self.units().enemy_blocks + self.units().zombies + self.world().zpots
+            if unit.x == coord.x and unit.y == coord.y
+        ]
+
     def push(self) -> None:
         if self._do_command:
             payload = CommandPayload(
@@ -374,7 +390,7 @@ class Game:
             elif isinstance(self._units_data, UnitsRepsonse) and self._units_data.base:
                 self._attacks = []
                 self._builds = []
-                self._move_base = Coordinate(x=self.get_head().x, y=self.get_head().y)
+                self._move_base = None
                 self._do_command = False
 
                 if current_state != "RUNNING":

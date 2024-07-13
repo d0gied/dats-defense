@@ -25,7 +25,7 @@ async def start(game: Game) -> None:
 async def loop(game: Game) -> None:
     units = game.units()
 
-    logger.info(f"Units: {json.dumps(units.model_dump(), indent=4)}")
+    logger.debug(f"Units: {json.dumps(units.model_dump(), indent=4)}")
 
     prev_data = json.loads(open(filename, "r").read())
     prev_data["steps"].append(units.model_dump())
