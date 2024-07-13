@@ -19,9 +19,18 @@ from requests import post, get, put, Session
 import urllib3
 import asyncio
 from loguru import logger
+from time import perf_counter
 
 TAsyncGameFunc = Callable[["Game"], Coroutine[Any, Any, None]]
 
+def timing(func: Any) -> Any:
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        start_time = perf_counter()
+        result = func(*args, **kwargs)
+        logger.info(f"{func.__name__} executed in {perf_counter() - start_time:.6f} seconds")
+        return result
+
+    return wrapper
 
 class Game:
     def __init__(
@@ -103,24 +112,29 @@ class Game:
             raise Exception(f"Error getting rounds data: {resp.error}")
         return RoundsResponse.model_validate(response.json())
 
-    def get_head(self) -> Base | None:
+    @timing
+    def get_head(self) -> Base:
         for block in self.units().base:
             if block.is_head:
                 return block
-        return None
+        logger.error("No head block found")
+        raise Exception("No head block found")
 
+    @timing
     def get_block_by_id(self, block_id: str) -> Base | None:
         for block in self.units().base:
             if block.id == block_id:
                 return block
         return None
 
+    @timing
     def get_base_at(self, x: int, y: int) -> Base | None:
         for base in self.units().base:
             if base.x == x and base.y == y:
                 return base
         return None
 
+    @timing
     def is_connected(self, block_id: str) -> bool:
         blocks = self.units().base
         head: Base | None = None
@@ -170,6 +184,7 @@ class Game:
 
         return targets
 
+    @timing
     def attack(self, block_id: str, target: Coordinate) -> bool:
         if not self.is_connected(block_id):
             logger.warning(f"Block {block_id} is not connected to the head")
@@ -195,6 +210,7 @@ class Game:
 
         return True
 
+    @timing
     def build(self, target: Coordinate) -> bool:
         has_base = False
         free_gold = self.units().player.gold + self._extra_gold - len(self._builds)
@@ -237,7 +253,11 @@ class Game:
         return True
 
 
+    @timing
     def move_base(self, target: Coordinate) -> None:
+        if self.get_base_at(target.x, target.y) is None:
+            logger.warning(f"Block already exists at {target.x}, {target.y}")
+            return
         logger.info(f"Moving base to {target.x}, {target.y}")
         self._move_base = target
         self._do_command = True
@@ -278,7 +298,6 @@ class Game:
             logger.error("start and loop function must be set")
             raise ValueError("start and loop function must be set")
         logger.info("Game started")
-        self._participate()
         self._units_data = self._units()
         self._world_data = self._world()
         await self._start_func(self)
@@ -286,6 +305,7 @@ class Game:
         while True:
             self._units_data = self._units()
             self._world_data = self._world()
+            self._move_base = Coordinate(x=self.get_head().x, y=self.get_head().y)
             await self._loop_func(self)
             self.push()
             self._attacks = []

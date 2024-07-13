@@ -4,6 +4,7 @@ from libs.game.game import Game, CommandPayload
 from libs.models.core import AttackCommand, Coordinate, BuildCommand
 from config import Config
 from loguru import logger
+import json
 
 # set loguru logging to file
 logger.add("logs.log", rotation="1 day", retention="7 days", level="INFO")
@@ -11,25 +12,27 @@ logger.add("logs.log", rotation="1 day", retention="7 days", level="INFO")
 parser = ArgumentParser(description="Big Data Small Memory")
 
 parser.add_argument(
-    "--command-test", action="store_true", help="Send a test command to the game server"
+    "--mode",
+    action="store",
+    help="Set the mode of the bot: 'main', 'test', 'local'"
 )
 parser.add_argument(
-    "--participate-test",
+    "--participate",
     action="store_true",
     help="Send a test participate request to the game server",
 )
 parser.add_argument(
-    "--units-test",
+    "--units",
     action="store_true",
     help="Send a test units request to the game server",
 )
 parser.add_argument(
-    "--world-test",
+    "--world",
     action="store_true",
     help="Send a test world request to the game server",
 )
 parser.add_argument(
-    "--rounds-test",
+    "--rounds",
     action="store_true",
     help="Send a test rounds request to the game server",
 )
@@ -41,36 +44,27 @@ parser.add_argument(
 
 if __name__ == "__main__":
     # BASE_URL = "http://127.0.0.1:8000/"
-    BASE_URL = Config.Server.API_TEST_BASE_URL
     args = parser.parse_args()
-    if args.command_test:
-        game = Game(api_base_url=BASE_URL)
-        game._command(
-            CommandPayload(
-                attack=[
-                    AttackCommand(
-                        blockId="f47ac10b-58cc-0372-8562-0e02b2c3d479",
-                        target=Coordinate(x=1, y=1),
-                    )
-                ],
-                build=[],
-                moveBase=Coordinate(x=1, y=1),
-            )
-        )
-    if args.participate_test:
-        game = Game(api_base_url=BASE_URL)
-        game._participate()
-    if args.units_test:
-        game = Game(api_base_url=BASE_URL)
-        game._units()
-    if args.world_test:
-        game = Game(api_base_url=BASE_URL)
-        game._world()
-    if args.rounds_test:
-        game = Game(api_base_url=BASE_URL)
-        game._rounds()
+    BASE_URL = Config.Server.API_BASE_URL
+    if args.mode == "test":
+        BASE_URL = Config.Server.API_TEST_BASE_URL
+    if args.mode == "local":
+        BASE_URL = "http://127.0.0.1:8000/"
+
+    game = Game(api_base_url=BASE_URL)
+    if args.participate:
+        resp = game._participate()
+        print(json.dumps(resp.model_dump(), indent=4))
+    if args.units:
+        units = game._units()
+        print(json.dumps(units.model_dump(), indent=4))
+    if args.world:
+        world = game._world()
+        print(json.dumps(world.model_dump(), indent=4))
+    if args.rounds:
+        rounds = game._rounds()
+        print(json.dumps(rounds.model_dump(), indent=4))
     if args.bot:
-        game = Game(api_base_url=BASE_URL)
         from bot import start as bot_start, loop as bot_loop
         game.start(bot_start)
         game.loop(bot_loop)
