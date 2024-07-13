@@ -137,16 +137,7 @@ class Game:
     @timing
     def is_connected(self, block_id: str) -> bool:
         blocks = self.units().base
-        head: Base | None = None
-        for block in blocks:
-            if block.is_head:
-                head = block
-                break
-
-        if head is None:
-            logger.error("No head block found")
-            raise Exception("No head block found")
-            return False
+        head = self.get_head()
 
         queue = [head]
         visited = set()
@@ -162,6 +153,7 @@ class Game:
 
         return False
 
+    @timing
     def get_all_accessible_targets(self, block_id: str) -> list[Zombie | EnemyBase]:
         blocks = self.units().base
         block = self.get_block_by_id(block_id)
@@ -183,6 +175,25 @@ class Game:
                 targets.append(enemy)
 
         return targets
+
+    @timing
+    def get_all_connected(self) -> list[Base]:
+        blocks = self.units().base
+        head = self.get_head()
+
+        queue = [head]
+        visited = set()
+        connected = []
+        while queue:
+            current = queue.pop(0)
+            visited.add(current)
+            connected.append(current)
+
+            for block in blocks:
+                if block not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
+                    queue.append(block)
+
+        return connected
 
     @timing
     def attack(self, block_id: str, target: Coordinate) -> bool:

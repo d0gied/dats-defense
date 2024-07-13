@@ -7,4 +7,5 @@ async def start(game: Game) -> None:
             game.move_base(Coordinate(x=zpot.x, y=zpot.y))
             break
 
-async def loop(game: Game) -> None: ...
+async def loop(game: Game) -> None:
+    base = game.units().base
