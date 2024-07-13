@@ -66,12 +66,12 @@ class ParticipateResponse(Response):
 
 class UnitsRepsonse(Response):
     base: list[Base] = Field(...)
-    enemy_blocks: Optional[list[EnemyBase]] = Field(default_factory=list, alias="enemyBlocks")
+    enemy_blocks: list[EnemyBase] = Field(default_factory=list, alias="enemyBlocks")
     player: Player = Field(...)
     realm_name: str = Field(..., alias="realmName", examples=["map1"])
     turn: int = Field(..., examples=[1])
     turn_ends_in_ms: int = Field(..., alias="turnEndsInMs", examples=[1000])
-    zombies: Optional[list[Zombie]] = Field(default_factory=list)
+    zombies: list[Zombie] = Field(default_factory=list)
 
     @validator("base", pre=True, always=True)
     def base_val(cls, v):

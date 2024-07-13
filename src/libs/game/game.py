@@ -311,12 +311,19 @@ class Game:
         logger.info("Game started")
         self._units_data = self._units()
         self._world_data = self._world()
+        if not self.units().base:
+            logger.error("No base found, Game over")
+            return
         await self._start_func(self)
         logger.info("Game loop started")
         while True:
             self._units_data = self._units()
             self._world_data = self._world()
             self._move_base = Coordinate(x=self.get_head().x, y=self.get_head().y)
+
+            if not self.units().base:
+                logger.error("No base found, Game over")
+                return
             await self._loop_func(self)
             self.push()
             self._attacks = []
