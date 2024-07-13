@@ -14,4 +14,4 @@ class Base(Block):
 
 
 class EnemyBase(Block):
-    name: str = Field(..., examples=["BDSM"])
+    name: str = Field("unknown", examples=["BDSM"])

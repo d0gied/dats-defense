@@ -20,8 +20,14 @@ import urllib3
 import asyncio
 from loguru import logger
 from time import perf_counter
+from fastapi import FastAPI
 
 TAsyncGameFunc = Callable[["Game"], Coroutine[Any, Any, None]]
+async def mock_func(game: "Game") -> None:
+    pass
+
+BASE_DAMAGE = 10
+HEAD_DAMAGE = 40
 
 def timing(func: Any) -> Any:
     def wrapper(*args: Any, **kwargs: Any) -> Any:
@@ -45,11 +51,13 @@ class Game:
         self._builds: list[BuildCommand] = []
         self._move_base: Coordinate = Coordinate(x=0, y=0)
 
-        self._start_func: TAsyncGameFunc | None = None
-        self._loop_func: TAsyncGameFunc | None = None
+        self._start_func: TAsyncGameFunc = mock_func
+        self._loop_func: TAsyncGameFunc = mock_func
+        self._waiting_func: TAsyncGameFunc = mock_func
+        self._dead_func: TAsyncGameFunc = mock_func
 
-        self._units_data: UnitsRepsonse | None = None
-        self._world_data: WorldResponse | None = None
+        self._units_data: UnitsRepsonse | ErrorResponse | None = None
+        self._world_data: WorldResponse | ErrorResponse | None = None
 
         self._extra_gold: int = 0 # for killing zombies
 
@@ -65,7 +73,7 @@ class Game:
             raise Exception(f"Error sending command: {resp.error}")
         return CommandResponse.model_validate(response.json())
 
-    def _participate(self) -> ParticipateResponse:
+    def _participate(self) -> ParticipateResponse | ErrorResponse:
         response = put(
             self._api_base_url + "play/zombidef/participate",
             headers={"X-Auth-Token": Config.Server.TOKEN},
@@ -73,10 +81,10 @@ class Game:
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
             logger.error(f"Error participating: {resp}")
-            raise Exception(f"Error participating: {resp.error}")
+            return resp
         return ParticipateResponse.model_validate(response.json())
 
-    def _units(self) -> UnitsRepsonse:
+    def _units(self) -> UnitsRepsonse | ErrorResponse:
         response = get(
             self._api_base_url + "play/zombidef/units",
             headers={"X-Auth-Token": Config.Server.TOKEN},
@@ -85,10 +93,10 @@ class Game:
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
             logger.error(f"Error getting units data: {resp}")
-            raise Exception(f"Error getting units data: {resp.error}")
+            return resp
         return UnitsRepsonse.model_validate(response.json())
 
-    def _world(self) -> WorldResponse:
+    def _world(self) -> WorldResponse | ErrorResponse:
         response = get(
             self._api_base_url + "play/zombidef/world",
             headers={"X-Auth-Token": Config.Server.TOKEN},
@@ -97,7 +105,7 @@ class Game:
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
             logger.error(f"Error getting world data: {resp}")
-            raise Exception(f"Error getting world data: {resp.error}")
+            return resp
         return WorldResponse.model_validate(response.json())
 
     def _rounds(self) -> RoundsResponse:
@@ -140,15 +148,15 @@ class Game:
         head = self.get_head()
 
         queue = [head]
-        visited = set()
+        visited: set[str] = set()
         while queue:
             current = queue.pop(0)
-            visited.add(current)
+            visited.add(current.id)
             if current.id == block_id:
                 return True
 
             for block in blocks:
-                if block not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
+                if block.id not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
                     queue.append(block)
 
         return False
@@ -176,21 +184,29 @@ class Game:
 
         return targets
 
+    def get_turn(self) -> int:
+        return self.units().turn
+
+    def get_gold(self, extra=True) -> int:
+        if extra:
+            return self.units().player.gold + extra
+        return self.units().player.gold
+
     @timing
     def get_all_connected(self) -> list[Base]:
         blocks = self.units().base
         head = self.get_head()
 
-        queue = [head]
-        visited = set()
+        queue: list[Base] = [head]
+        visited: set[str] = set()
         connected = []
         while queue:
             current = queue.pop(0)
-            visited.add(current)
+            visited.add(current.id)
             connected.append(current)
 
             for block in blocks:
-                if block not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
+                if block.id not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
                     queue.append(block)
 
         return connected
@@ -215,14 +231,15 @@ class Game:
             logger.warning(f"Block can only attack at distance 4, not {distance ** 0.5:.2f}")
             return False
 
-        attacked_zombies: int = 0
+        killed_zombies: int = 0
+        damage = HEAD_DAMAGE if block.is_head else BASE_DAMAGE
         for zombie in self.units().zombies:
             if zombie.x == target.x and zombie.y == target.y:
-                attacked_zombies += 1
+                killed_zombies += zombie.health <= damage
 
-        self._extra_gold += attacked_zombies
+        self._extra_gold += killed_zombies
 
-        logger.info(f"Attacking {block_id} at {target.x}, {target.y}")
+        logger.info(f"Attacking {block_id} at {target.x}, {target.y}, {killed_zombies} zombies killed")
         self._attacks.append(AttackCommand(blockId=block_id, target=target))
         self._do_command = True
 
@@ -282,12 +299,18 @@ class Game:
 
     def units(self) -> UnitsRepsonse:
         if self._units_data is None:
-            self._units_data = self._units()
+            resp = self._units()
+            self._units_data = resp
+        if isinstance(self._units_data, ErrorResponse):
+            raise Exception(f"Error: {self._units_data.error}")
         return self._units_data
 
     def world(self) -> WorldResponse:
         if self._world_data is None:
-            self._world_data = self._world()
+            resp = self._world()
+            self._world_data = resp
+        if isinstance(self._world_data, ErrorResponse):
+            raise Exception(f"Error: {self._world_data.error}")
         return self._world_data
 
     def push(self) -> None:
@@ -308,14 +331,22 @@ class Game:
         logger.info("Game loop function set")
         return func
 
+    def waiting(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
+        self._waiting_func = func
+        logger.info("Game waiting function set")
+        return func
+
+    def dead(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
+        self._dead_func = func
+        logger.info("Game dead function set")
+        return func
+
     def run(self) -> None:
         asyncio.run(self._run())
 
-    async def _run(self) -> None:
-        if self._start_func is None or self._loop_func is None:
-            logger.error("start and loop function must be set")
-            raise ValueError("start and loop function must be set")
+    async def _run(self, force=False) -> None:
         logger.info("Game started")
+
         self._units_data = self._units()
         self._world_data = self._world()
         if not self.units().base:
@@ -328,8 +359,9 @@ class Game:
             self._world_data = self._world()
             self._move_base = Coordinate(x=self.get_head().x, y=self.get_head().y)
 
-            if not self.units().base:
+            if not self.units().base and not force:
                 logger.error("No base found, Game over")
+                await self._dead_func(self)
                 return
             await self._loop_func(self)
             self.push()
