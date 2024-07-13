@@ -1,7 +1,15 @@
 from libs.alerts import AlertManager
 from argparse import ArgumentParser
 from libs.game.game import Game, CommandPayload
-from libs.models.core import AttackCommand, Coordinate, BuildCommand, ErrorResponse, ParticipateResponse, UnitsRepsonse, WorldResponse
+from libs.models.core import (
+    AttackCommand,
+    Coordinate,
+    BuildCommand,
+    ErrorResponse,
+    ParticipateResponse,
+    UnitsRepsonse,
+    WorldResponse,
+)
 from config import Config
 from loguru import logger
 import json
@@ -22,9 +30,7 @@ logger.add(sys.stderr, level="INFO")
 parser = ArgumentParser(description="Big Data Small Memory")
 
 parser.add_argument(
-    "--mode",
-    action="store",
-    help="Set the mode of the bot: 'main', 'test', 'local'"
+    "--mode", action="store", help="Set the mode of the bot: 'main', 'test', 'local'"
 )
 parser.add_argument(
     "--participate",
@@ -75,7 +81,6 @@ if __name__ == "__main__":
     loop = asyncio.new_event_loop()
     loop.create_task(game._run())
 
-
     if args.participate:
         resp = game._participate()
         print(json.dumps(resp.model_dump(), indent=4))
@@ -89,13 +94,20 @@ if __name__ == "__main__":
         rounds = game._rounds()
         print(json.dumps(rounds.model_dump(), indent=4))
     if args.bot:
-        from bot import start as bot_start, loop as bot_loop, dead as bot_dead, waiting as bot_waiting
+        from bot import (
+            start as bot_start,
+            loop as bot_loop,
+            dead as bot_dead,
+            waiting as bot_waiting,
+        )
+
         game.start(bot_start)
         game.loop(bot_loop)
         game.dead(bot_dead)
         game.waiting(bot_waiting)
     if args.daemon:
         from daemon import start as bot_start, loop as bot_loop, waiting as bot_waiting
+
         game.start(bot_start)
         game.loop(bot_loop)
         game.waiting(bot_waiting)
@@ -113,17 +125,18 @@ if __name__ == "__main__":
             allow_methods=["*"],
             allow_headers=["*"],
         )
+
         @app.get("/play/zombidef/units")
         async def units() -> UnitsRepsonse | ErrorResponse:
-            return game._units_data # type: ignore
+            return game._units_data  # type: ignore
 
         @app.get("/play/zombidef/world")
         async def world() -> WorldResponse | ErrorResponse:
-            return game._world_data # type: ignore
+            return game._world_data  # type: ignore
 
         @app.post("/play/zombidef/participate")
         async def participate() -> ParticipateResponse | ErrorResponse:
-            return game._participate_data # type: ignore
+            return game._participate_data  # type: ignore
 
         config = UvicornConfig(app=app, log_level="critical")
         server = Server(config)

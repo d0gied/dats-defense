@@ -13,7 +13,7 @@ from ..models.core import (
     BuildCommand,
     Coordinate,
     Base,
-    ZPot
+    ZPot,
 )
 from typing import Any, Callable, Awaitable, Coroutine
 from requests import post, get, put, Session
@@ -24,20 +24,27 @@ from time import perf_counter
 from fastapi import FastAPI
 
 TAsyncGameFunc = Callable[["Game"], Coroutine[Any, Any, None]]
+
+
 async def mock_func(game: "Game") -> None:
     pass
 
+
 BASE_DAMAGE = 10
 HEAD_DAMAGE = 40
+
 
 def timing(func: Any) -> Any:
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         start_time = perf_counter()
         result = func(*args, **kwargs)
-        logger.debug(f"{func.__name__} executed in {perf_counter() - start_time:.6f} seconds")
+        logger.debug(
+            f"{func.__name__} executed in {perf_counter() - start_time:.6f} seconds"
+        )
         return result
 
     return wrapper
+
 
 class Game:
     def __init__(
@@ -61,7 +68,7 @@ class Game:
         self._world_data: WorldResponse | ErrorResponse | None = None
         self._participate_data: ParticipateResponse | ErrorResponse | None = None
 
-        self._extra_gold: int = 0 # for killing zombies
+        self._extra_gold: int = 0  # for killing zombies
 
     def _command(self, payload: CommandPayload) -> CommandResponse | ErrorResponse:
         response = post(
@@ -166,7 +173,10 @@ class Game:
                 return True
 
             for block in blocks:
-                if block.id not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
+                if (
+                    block.id not in visited
+                    and abs(block.x - current.x) + abs(block.y - current.y) == 1
+                ):
                     queue.append(block)
 
         return False
@@ -216,7 +226,10 @@ class Game:
             connected.append(current)
 
             for block in blocks:
-                if block.id not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
+                if (
+                    block.id not in visited
+                    and abs(block.x - current.x) + abs(block.y - current.y) == 1
+                ):
                     queue.append(block)
 
         return connected
@@ -234,11 +247,15 @@ class Game:
         distance = abs(target.x - block.x) ** 2 + abs(target.y - block.y) ** 2
 
         if block.is_head and distance > 64:
-            logger.warning(f"Head block can only attack at distance 8, not {distance ** 0.5:.2f}")
+            logger.warning(
+                f"Head block can only attack at distance 8, not {distance ** 0.5:.2f}"
+            )
             return False
 
         if not block.is_head and distance > 16:
-            logger.warning(f"Block can only attack at distance 4, not {distance ** 0.5:.2f}")
+            logger.warning(
+                f"Block can only attack at distance 4, not {distance ** 0.5:.2f}"
+            )
             return False
 
         killed_zombies: int = 0
@@ -249,7 +266,9 @@ class Game:
 
         self._extra_gold += killed_zombies
 
-        logger.info(f"Attacking {block_id} at {target.x}, {target.y}, {killed_zombies} zombies killed")
+        logger.info(
+            f"Attacking {block_id} at {target.x}, {target.y}, {killed_zombies} zombies killed"
+        )
         self._attacks.append(AttackCommand(blockId=block_id, target=target))
         self._do_command = True
 
@@ -276,27 +295,34 @@ class Game:
 
         for base in self.units().enemy_blocks:
             if abs(base.x - target.x) <= 1 and abs(base.y - target.y) <= 1:
-                logger.warning(f"Enemy block({base.x}, {base.y}) too close to {target.x}, {target.y}")
+                logger.warning(
+                    f"Enemy block({base.x}, {base.y}) too close to {target.x}, {target.y}"
+                )
                 return False
 
         for zombie in self.units().zombies:
             if zombie.x == target.x and zombie.y == target.y:
-                logger.warning(f"Zombie({zombie.type}) already exists at {target.x}, {target.y}")
+                logger.warning(
+                    f"Zombie({zombie.type}) already exists at {target.x}, {target.y}"
+                )
                 return False
 
         for zpot in self.world().zpots:
             if zpot.x == target.x and zpot.y == target.y:
-                logger.warning(f"Zpot({zpot.type}) already exists at {target.x}, {target.y}")
+                logger.warning(
+                    f"Zpot({zpot.type}) already exists at {target.x}, {target.y}"
+                )
                 return False
             if abs(zpot.x - target.x) + abs(zpot.y - target.y) == 1:
-                logger.warning(f"Zpot({zpot.x}, {zpot.y}) too close to {target.x}, {target.y}")
+                logger.warning(
+                    f"Zpot({zpot.x}, {zpot.y}) too close to {target.x}, {target.y}"
+                )
                 return False
 
         logger.info(f"Building at {target.x}, {target.y}")
         self._builds.append(BuildCommand(x=target.x, y=target.y))
         self._do_command = True
         return True
-
 
     @timing
     def move_base(self, target: Coordinate) -> None:
@@ -326,7 +352,10 @@ class Game:
     def get_units_at(self, coord: Coordinate) -> list[EnemyBase | Base | Zombie | ZPot]:
         return [
             unit
-            for unit in self.units().base + self.units().enemy_blocks + self.units().zombies + self.world().zpots
+            for unit in self.units().base
+            + self.units().enemy_blocks
+            + self.units().zombies
+            + self.world().zpots
             if unit.x == coord.x and unit.y == coord.y
         ]
 
@@ -373,14 +402,20 @@ class Game:
             next_tick: float = 2
 
             if isinstance(self._participate_data, ParticipateResponse):
-                if not current_state.startswith("PREPARING") \
-                    or abs(self._participate_data.starts_in_sec - 60) <= 1 \
-                    or abs(self._participate_data.starts_in_sec - 30) <= 1 \
-                    or abs(self._participate_data.starts_in_sec - 10) <= 1 \
-                    or abs(self._participate_data.starts_in_sec - 5) <= 1:
-                    logger.info(f"Preparing game, starts in {self._participate_data.starts_in_sec} seconds")
+                if (
+                    not current_state.startswith("PREPARING")
+                    or abs(self._participate_data.starts_in_sec - 60) <= 1
+                    or abs(self._participate_data.starts_in_sec - 30) <= 1
+                    or abs(self._participate_data.starts_in_sec - 10) <= 1
+                    or abs(self._participate_data.starts_in_sec - 5) <= 1
+                ):
+                    logger.info(
+                        f"Preparing game, starts in {self._participate_data.starts_in_sec} seconds"
+                    )
                 current_state = "PREPARING"
-                logger.debug(f"Game starts in {self._participate_data.starts_in_sec} seconds")
+                logger.debug(
+                    f"Game starts in {self._participate_data.starts_in_sec} seconds"
+                )
                 for func in self._waiting_funcs:
                     try:
                         await func(self)
@@ -424,5 +459,7 @@ class Game:
                         logger.error(e)
                 current_state = "DEAD"
 
-            logger.debug(f"Game loop ticked, next turn in {next_tick:.2f} seconds, sleeping for {next_tick + 0.1:.2f} seconds")
+            logger.debug(
+                f"Game loop ticked, next turn in {next_tick:.2f} seconds, sleeping for {next_tick + 0.1:.2f} seconds"
+            )
             await asyncio.sleep(next_tick + 0.1)
