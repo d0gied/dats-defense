@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel, Field
 from .block import Base, EnemyBase
 from .player import Player
@@ -80,7 +81,7 @@ class Round(BaseModel):
     duration: int = Field(..., examples=[60])
     end_at: str = Field(..., alias="endAt", examples=["2021-10-10T10:00:00Z"])
     name: str = Field(..., examples=["round1"])
-    repeat: int = Field(..., examples=[1])
+    repeat: Optional[int] = Field(None, examples=[1])
     start_at: str = Field(..., alias="startAt", examples=["2021-10-10T10:00:00Z"])
     status: str = Field(..., examples=["active"])
 
