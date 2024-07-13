@@ -96,15 +96,15 @@ if __name__ == "__main__":
         app = FastAPI()
         @app.get("/play/zombidef/units")
         async def units() -> UnitsRepsonse | ErrorResponse:
-            return game.units()
+            return game._units_data # type: ignore
 
         @app.get("/play/zombidef/world")
         async def world() -> WorldResponse | ErrorResponse:
-            return game.world()
+            return game._world_data # type: ignore
 
         @app.post("/play/zombidef/participate")
         async def participate() -> ParticipateResponse | ErrorResponse:
-            return game._participate()
+            return game._participate_data # type: ignore
 
         config = UvicornConfig(app=app)
         server = Server(config)

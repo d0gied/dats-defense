@@ -354,14 +354,13 @@ class Game:
             self._units_data = self._units()
             self._world_data = self._world()
             self._participate_data = self._participate()
-            next_tick: float = 5
+            next_tick: float = 2
 
             if isinstance(self._participate_data, ParticipateResponse):
                 current_state = "PREPARING"
-                logger.info("Preparing")
                 await self._waiting_func(self)
 
-            elif isinstance(self._world_data, WorldResponse):
+            elif isinstance(self._units_data, UnitsRepsonse) and self._units_data.base:
                 self._attacks = []
                 self._builds = []
                 self._move_base = Coordinate(x=self.get_head().x, y=self.get_head().y)
@@ -376,8 +375,10 @@ class Game:
 
                 next_tick = self.units().turn_ends_in_ms / 1000
             else:
-                logger.error(f"Error: {self._world_data.error}")
-                await self._dead_func(self)
+                if current_state != "DEAD":
+                    await self._dead_func(self)
+                await self._waiting_func(self)
+                current_state = "DEAD"
 
             logger.info(f"Game loop ticked, next turn in {next_tick:.2f} seconds, sleeping for {next_tick + 0.1:.2f} seconds")
             await asyncio.sleep(next_tick + 0.1)
