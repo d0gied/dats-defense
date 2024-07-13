@@ -2,6 +2,11 @@ from libs.alerts import AlertManager
 from argparse import ArgumentParser
 from libs.game.game import Game, CommandPayload
 from libs.models.core import AttackCommand, Coordinate, BuildCommand
+from config import Config
+from loguru import logger
+
+# set loguru logging to file
+logger.add("logs.log", rotation="1 day", retention="7 days", level="INFO")
 
 parser = ArgumentParser(description="Big Data Small Memory")
 
@@ -35,9 +40,11 @@ parser.add_argument(
 )
 
 if __name__ == "__main__":
+    # BASE_URL = "http://127.0.0.1:8000/"
+    BASE_URL = Config.Server.API_TEST_BASE_URL
     args = parser.parse_args()
     if args.command_test:
-        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game = Game(api_base_url=BASE_URL)
         game._command(
             CommandPayload(
                 attack=[
@@ -51,19 +58,19 @@ if __name__ == "__main__":
             )
         )
     if args.participate_test:
-        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game = Game(api_base_url=BASE_URL)
         game._participate()
     if args.units_test:
-        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game = Game(api_base_url=BASE_URL)
         game._units()
     if args.world_test:
-        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game = Game(api_base_url=BASE_URL)
         game._world()
     if args.rounds_test:
-        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game = Game(api_base_url=BASE_URL)
         game._rounds()
     if args.bot:
-        game = Game(api_base_url="http://127.0.0.1:8000/")
+        game = Game(api_base_url=BASE_URL)
         from bot import start as bot_start, loop as bot_loop
         game.start(bot_start)
         game.loop(bot_loop)

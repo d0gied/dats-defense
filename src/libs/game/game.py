@@ -149,6 +149,7 @@ class Game:
             logger.error("start and loop function must be set")
             raise ValueError("start and loop function must be set")
         logger.info("Game started")
+        self._participate()
         self._units_data = self._units()
         self._world_data = self._world()
         await self._start_func(self)
