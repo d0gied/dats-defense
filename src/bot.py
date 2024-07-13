@@ -61,7 +61,6 @@ async def loop(game: Game) -> None:
                 if isinstance(unit, (EnemyBase, Zombie)):
                     game.attack(block_id=base.id, target=target)
                     logger.info(f"Attacking {unit} with damage {base.attack}")
-
     logger.info(f"Current gold: {game.get_gold()}")
 
     most_alive: Base = head
@@ -72,6 +71,7 @@ async def loop(game: Game) -> None:
         new_head_pos = Coordinate(x=most_alive.x, y=most_alive.y)
         game.move_base(new_head_pos)
         logger.info(f"Moving base to {new_head_pos}")
+
 
 async def dead(game: Game) -> None:
     logger.info(f"Game ended with {game.units().player.gold} points")

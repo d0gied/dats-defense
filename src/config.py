@@ -1,5 +1,6 @@
-from configloader import envstr, envint
+from configloader import envstr, envint, LoaderConfig
 
+LoaderConfig.set_auto_load_dotenv(True)
 
 class Config:
     class Telegram:

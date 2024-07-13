@@ -75,7 +75,7 @@ if __name__ == "__main__":
     if args.mode == "test":
         BASE_URL = Config.Server.API_TEST_BASE_URL
     if args.mode == "local":
-        BASE_URL = "http://127.0.0.1:8000/"
+        BASE_URL = "http://127.0.0.1:8001/"
 
     game = Game(api_base_url=BASE_URL)
     loop = asyncio.new_event_loop()

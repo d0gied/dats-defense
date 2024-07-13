@@ -71,9 +71,10 @@ class Game:
         self._extra_gold: int = 0  # for killing zombies
 
     def _command(self, payload: CommandPayload) -> CommandResponse | ErrorResponse:
+        logger.debug(f"Sending command: {payload.model_dump(by_alias=True)}")
         response = post(
             self._api_base_url + "play/zombidef/command",
-            json=payload.model_dump(),
+            json=payload.model_dump(by_alias=True),
             headers={"X-Auth-Token": Config.Server.TOKEN},
         )
         if not response.text:
@@ -275,7 +276,7 @@ class Game:
         return True
 
     @timing
-    def build(self, target: Coordinate) -> bool:
+    def can_build(self, target: Coordinate) -> bool:
         has_base = False
         free_gold = self.units().player.gold + self._extra_gold - len(self._builds)
         if free_gold < 1:
@@ -318,7 +319,12 @@ class Game:
                     f"Zpot({zpot.x}, {zpot.y}) too close to {target.x}, {target.y}"
                 )
                 return False
+        return True
 
+    @timing
+    def build(self, target: Coordinate) -> bool:
+        if not self.can_build(target):
+            return False
         logger.info(f"Building at {target.x}, {target.y}")
         self._builds.append(BuildCommand(x=target.x, y=target.y))
         self._do_command = True
