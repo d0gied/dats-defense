@@ -155,7 +155,19 @@ class Game:
             logger.warning(f"Block {block_id} is not connected to the head")
             return False
 
+        block = self.get_block_by_id(block_id)
+        if block is None:
+            logger.warning(f"Block {block_id} not found")
+            return False
+        distance = abs(target.x - block.x) ** 2 + abs(target.y - block.y) ** 2
 
+        if block.is_head and distance > 64:
+            logger.warning(f"Head block can only attack at distance 8, not {distance ** 0.5:.2f}")
+            return False
+
+        if not block.is_head and distance > 16:
+            logger.warning(f"Block can only attack at distance 4, not {distance ** 0.5:.2f}")
+            return False
 
         logger.info(f"Attacking {block_id} at {target.x}, {target.y}")
         self._attacks.append(AttackCommand(blockId=block_id, target=target))
