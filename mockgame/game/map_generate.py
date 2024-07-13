@@ -2,9 +2,9 @@ from typing import List, Tuple
 from random import randint, choice
 from uuid import uuid4
 
-from models.cell import Cell, Coordinate
-from models.zombie import Zombie, ZPot
-from models.block import Base
+from models_gen.cell import Cell, Coordinate
+from models_gen.zombie import Zombie, ZPot
+from models_gen.block import Base
 
 MIN_DIST_BETWEEN_PLAYERS = 50 ** 2
 MIN_DIST_FROM_PLAYER_TO_ZPOT = 3 ** 2
