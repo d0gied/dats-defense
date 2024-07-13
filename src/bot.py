@@ -25,17 +25,17 @@ async def find_target(game: Game, base: Base) -> Coordinate | None:
     target = Coordinate(x=best[0][0], y=best[0][1])
     priority = best[1]
 
-    logger.debug(f"Base {base.id} is attacking {target} with priority {priority}")
+    logger.info(f"Base {base.id} is attacking {target} with priority {priority}")
     return target
 
 async def loop(game: Game) -> None:
     current_base = game.get_all_connected()
-    logger.debug(f"Current gold: {game.units().player.gold}")
+    logger.info(f"Current gold: {game.get_gold()}")
     for base in current_base:
         target = await find_target(game, base)
         if target is not None:
             game.attack(block_id=base.id, target=target)
-
+    logger.info(f"Current gold: {game.get_gold()}")
 
 
 async def dead(game: Game) -> None:

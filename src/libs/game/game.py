@@ -392,6 +392,7 @@ class Game:
                 self._builds = []
                 self._move_base = None
                 self._do_command = False
+                self._extra_gold = 0
 
                 if current_state != "RUNNING":
                     for func in self._start_funcs:
