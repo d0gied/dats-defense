@@ -39,6 +39,8 @@ class Game:
         self._units_data: UnitsRepsonse | None = None
         self._world_data: WorldResponse | None = None
 
+        self._extra_gold: int = 0 # for killing zombies
+
     def _command(self, payload: CommandPayload) -> CommandResponse:
         response = post(
             self._api_base_url + "play/zombidef/command",
@@ -103,10 +105,47 @@ class Game:
         self._attacks.append(AttackCommand(blockId=block_id, target=target))
         self._do_command = True
 
-    def build(self, target: Coordinate) -> None:
+    def build(self, target: Coordinate) -> bool:
+        has_base = False
+        free_gold = self.units().player.gold + self._extra_gold - len(self._builds)
+        if free_gold < 1:
+            logger.warning(f"Not enough gold to build at {target.x}, {target.y}")
+            return False
+
+        for base in self.units().base:
+            if base.x == target.x and base.y == target.y:
+                logger.warning(f"Base already exists at {target.x}, {target.y}")
+                return False
+            if abs(base.x - target.x) + abs(base.y - target.y) == 1:
+                has_base = True
+
+        if not has_base:
+            logger.warning(f"No base nearby {target.x}, {target.y}")
+            return False
+
+        for base in self.units().enemy_blocks:
+            if abs(base.x - target.x) <= 1 and abs(base.y - target.y) <= 1:
+                logger.warning(f"Enemy block({base.x}, {base.y}) too close to {target.x}, {target.y}")
+                return False
+
+        for zombie in self.units().zombies:
+            if zombie.x == target.x and zombie.y == target.y:
+                logger.warning(f"Zombie({zombie.type}) already exists at {target.x}, {target.y}")
+                return False
+
+        for zpot in self.world().zpots:
+            if zpot.x == target.x and zpot.y == target.y:
+                logger.warning(f"Zpot({zpot.type}) already exists at {target.x}, {target.y}")
+                return False
+            if abs(zpot.x - target.x) + abs(zpot.y - target.y) == 1:
+                logger.warning(f"Zpot({zpot.x}, {zpot.y}) too close to {target.x}, {target.y}")
+                return False
+
         logger.info(f"Building at {target.x}, {target.y}")
         self._builds.append(BuildCommand(x=target.x, y=target.y))
         self._do_command = True
+        return True
+
 
     def move_base(self, target: Coordinate) -> None:
         logger.info(f"Moving base to {target.x}, {target.y}")
