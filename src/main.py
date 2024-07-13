@@ -9,16 +9,29 @@ parser.add_argument(
     "--command-test", action="store_true", help="Send a test command to the game server"
 )
 parser.add_argument(
-    "--participate-test", action="store_true", help="Send a test participate request to the game server"
+    "--participate-test",
+    action="store_true",
+    help="Send a test participate request to the game server",
 )
 parser.add_argument(
-    "--units-test", action="store_true", help="Send a test units request to the game server"
+    "--units-test",
+    action="store_true",
+    help="Send a test units request to the game server",
 )
 parser.add_argument(
-    "--world-test", action="store_true", help="Send a test world request to the game server"
+    "--world-test",
+    action="store_true",
+    help="Send a test world request to the game server",
 )
 parser.add_argument(
-    "--rounds-test", action="store_true", help="Send a test rounds request to the game server"
+    "--rounds-test",
+    action="store_true",
+    help="Send a test rounds request to the game server",
+)
+parser.add_argument(
+    "--bot",
+    action="store_true",
+    help="Start the bot",
 )
 
 if __name__ == "__main__":
@@ -49,3 +62,9 @@ if __name__ == "__main__":
     if args.rounds_test:
         game = Game(api_base_url="http://127.0.0.1:8000/")
         game._rounds()
+    if args.bot:
+        game = Game(api_base_url="http://127.0.0.1:8000/")
+        from bot import start as bot_start, loop as bot_loop
+        game.start(bot_start)
+        game.loop(bot_loop)
+        game.run()

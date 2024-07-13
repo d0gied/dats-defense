@@ -4,6 +4,7 @@ from .player import Player
 from .zombie import Zombie, ZPot
 from .cell import Coordinate
 
+
 class AttackCommand(BaseModel):
     block_id: str = Field(
         ..., alias="blockId", examples=["f47ac10b-58cc-0372-8562-0e02b2c3d479"]
@@ -56,6 +57,7 @@ class CommandResponse(Response):
     )
     errors: list[str] = Field(..., examples=["coordinate at {0 0} is already occupied"])
 
+
 class ParticipateResponse(Response):
     starts_in_sec: int = Field(..., alias="startsInSec", examples=[300])
 
@@ -73,13 +75,14 @@ class UnitsRepsonse(Response):
 class WorldResponse(Response):
     zpots: list[ZPot] = Field(...)
 
+
 class Round(BaseModel):
-  duration: int = Field(..., examples=[60])
-  end_at: str = Field(..., alias="endAt", examples=["2021-10-10T10:00:00Z"])
-  name: str = Field(..., examples=["round1"])
-  repeat: int = Field(..., examples=[1])
-  start_at: str = Field(..., alias="startAt", examples=["2021-10-10T10:00:00Z"])
-  status: str = Field(..., examples=["active"])
+    duration: int = Field(..., examples=[60])
+    end_at: str = Field(..., alias="endAt", examples=["2021-10-10T10:00:00Z"])
+    name: str = Field(..., examples=["round1"])
+    repeat: int = Field(..., examples=[1])
+    start_at: str = Field(..., alias="startAt", examples=["2021-10-10T10:00:00Z"])
+    status: str = Field(..., examples=["active"])
 
 
 class RoundsResponse(BaseModel):
