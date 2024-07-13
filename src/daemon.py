@@ -9,13 +9,7 @@ logger.add("daemon.log", rotation="1 day", retention="7 days", level="INFO")
 
 filename: str = "rounds.json"
 
-async def on_start(game: Game) -> None:
-    ...
-
 async def waiting(game: Game) -> None:
-    ...
-
-async def on_death(game: Game) -> None:
     ...
 
 async def start(game: Game) -> None:

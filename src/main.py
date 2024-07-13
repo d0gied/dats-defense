@@ -7,9 +7,17 @@ from loguru import logger
 import json
 from fastapi import FastAPI
 import asyncio
+import sys
+
+logger.remove()
 
 # set loguru logging to file
-logger.add("logs.log", rotation="1 day", retention="7 days", level="INFO")
+logger.add("debug.log", rotation="1 day", retention="7 days", level="DEBUG")
+logger.add("error.log", rotation="1 day", retention="7 days", level="ERROR")
+logger.add("info.log", rotation="1 day", retention="7 days", level="INFO")
+
+# set loguru logging to console
+logger.add(sys.stderr, level="INFO")
 
 parser = ArgumentParser(description="Big Data Small Memory")
 

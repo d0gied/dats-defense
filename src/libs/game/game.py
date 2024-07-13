@@ -51,10 +51,10 @@ class Game:
         self._builds: list[BuildCommand] = []
         self._move_base: Coordinate = Coordinate(x=0, y=0)
 
-        self._start_func: TAsyncGameFunc = mock_func
-        self._loop_func: TAsyncGameFunc = mock_func
-        self._waiting_func: TAsyncGameFunc = mock_func
-        self._dead_func: TAsyncGameFunc = mock_func
+        self._start_funcs: list[TAsyncGameFunc] = []
+        self._loop_funcs: list[TAsyncGameFunc] = []
+        self._waiting_funcs: list[TAsyncGameFunc] = []
+        self._dead_funcs: list[TAsyncGameFunc] = []
 
         self._units_data: UnitsRepsonse | ErrorResponse | None = None
         self._world_data: WorldResponse | ErrorResponse | None = None
@@ -70,7 +70,7 @@ class Game:
         )
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error sending command: {resp}")
+            logger.debug(f"Error sending command: {resp}")
             raise Exception(f"Error sending command: {resp.error}")
         return CommandResponse.model_validate(response.json())
 
@@ -81,7 +81,7 @@ class Game:
         )
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error participating: {resp}")
+            logger.debug(f"Error participating: {resp}")
             return resp
         return ParticipateResponse.model_validate(response.json())
 
@@ -93,7 +93,7 @@ class Game:
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error getting units data: {resp}")
+            logger.debug(f"Error getting units data: {resp}")
             return resp
         return UnitsRepsonse.model_validate(response.json())
 
@@ -105,7 +105,7 @@ class Game:
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error getting world data: {resp}")
+            logger.debug(f"Error getting world data: {resp}")
             return resp
         return WorldResponse.model_validate(response.json())
 
@@ -117,7 +117,7 @@ class Game:
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error getting rounds data: {resp}")
+            logger.debug(f"Error getting rounds data: {resp}")
             raise Exception(f"Error getting rounds data: {resp.error}")
         return RoundsResponse.model_validate(response.json())
 
@@ -323,22 +323,22 @@ class Game:
             self._command(payload)
 
     def start(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
-        self._start_func = func
+        self._start_funcs.append(func)
         logger.info("Game start function set")
         return func
 
     def loop(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
-        self._loop_func = func
+        self._loop_funcs.append(func)
         logger.info("Game loop function set")
         return func
 
     def waiting(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
-        self._waiting_func = func
+        self._waiting_funcs.append(func)
         logger.info("Game waiting function set")
         return func
 
     def dead(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
-        self._dead_func = func
+        self._dead_funcs.append(func)
         logger.info("Game dead function set")
         return func
 
@@ -357,8 +357,19 @@ class Game:
             next_tick: float = 2
 
             if isinstance(self._participate_data, ParticipateResponse):
+                if not current_state.startswith("PREPARING") \
+                    or abs(self._participate_data.starts_in_sec - 60) <= 1 \
+                    or abs(self._participate_data.starts_in_sec - 30) <= 1 \
+                    or abs(self._participate_data.starts_in_sec - 10) <= 1 \
+                    or abs(self._participate_data.starts_in_sec - 5) <= 1:
+                    logger.info(f"Preparing game, starts in {self._participate_data.starts_in_sec} seconds")
                 current_state = "PREPARING"
-                await self._waiting_func(self)
+                logger.debug(f"Game starts in {self._participate_data.starts_in_sec} seconds")
+                for func in self._waiting_funcs:
+                    try:
+                        await func(self)
+                    except Exception as e:
+                        logger.error(e)
 
             elif isinstance(self._units_data, UnitsRepsonse) and self._units_data.base:
                 self._attacks = []
@@ -367,18 +378,34 @@ class Game:
                 self._do_command = False
 
                 if current_state != "RUNNING":
-                    await self._start_func(self)
+                    for func in self._start_funcs:
+                        try:
+                            await func(self)
+                        except Exception as e:
+                            logger.error(e)
                     logger.info("Game started")
                 current_state = "RUNNING"
-                await self._loop_func(self)
+                for func in self._loop_funcs:
+                    try:
+                        await func(self)
+                    except Exception as e:
+                        logger.error(e)
                 self.push()
 
                 next_tick = self.units().turn_ends_in_ms / 1000
             else:
                 if current_state != "DEAD":
-                    await self._dead_func(self)
-                await self._waiting_func(self)
+                    for func in self._dead_funcs:
+                        try:
+                            await func(self)
+                        except Exception as e:
+                            logger.error(e)
+                for func in self._waiting_funcs:
+                    try:
+                        await func(self)
+                    except Exception as e:
+                        logger.error(e)
                 current_state = "DEAD"
 
-            logger.info(f"Game loop ticked, next turn in {next_tick:.2f} seconds, sleeping for {next_tick + 0.1:.2f} seconds")
+            logger.debug(f"Game loop ticked, next turn in {next_tick:.2f} seconds, sleeping for {next_tick + 0.1:.2f} seconds")
             await asyncio.sleep(next_tick + 0.1)
