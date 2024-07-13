@@ -215,6 +215,13 @@ class Game:
             logger.warning(f"Block can only attack at distance 4, not {distance ** 0.5:.2f}")
             return False
 
+        attacked_zombies: int = 0
+        for zombie in self.units().zombies:
+            if zombie.x == target.x and zombie.y == target.y:
+                attacked_zombies += 1
+
+        self._extra_gold += attacked_zombies
+
         logger.info(f"Attacking {block_id} at {target.x}, {target.y}")
         self._attacks.append(AttackCommand(blockId=block_id, target=target))
         self._do_command = True

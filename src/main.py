@@ -69,3 +69,8 @@ if __name__ == "__main__":
         game.start(bot_start)
         game.loop(bot_loop)
         game.run()
+    if args.daemon:
+        from bot import start as bot_start, loop as bot_loop
+        game.start(bot_start)
+        game.loop(bot_loop)
+        game.run()

@@ -1,5 +1,7 @@
-from libs.game.game import Game, EnemyBase
+from libs.game.game import Game, EnemyBase, AttackCommand
 from libs.models.cell import Coordinate
+
+PRIORITIES = {"normal": 1, "fast": 2, "bomber": 4, "liner": 6, "juggernaut" : 5, "chaos_knight": 3}
 
 async def start(game: Game) -> None:
     for zpot in game.world().zpots:
@@ -19,4 +21,4 @@ async def loop(game: Game) -> None:
                 most_priority = max((0, target.x, target.y), most_priority)
             else:
                 most_priority = max((PRIORITIES[target.type], target.x, target.y), most_priority)
-        attack = AttackCommand(blockId=base.id, target=Coordinate(x=most_priority[1], y=most_priority[2]))
+        game.attack(block_id=base.id, target=Coordinate(x=most_priority[1], y=most_priority[2]))
