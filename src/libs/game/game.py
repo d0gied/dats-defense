@@ -148,7 +148,27 @@ class Game:
 
         return False
 
-    def get_all_accessible_targets(self, block_id: str) -> list[Zombie | EnemyBase]: ...
+    def get_all_accessible_targets(self, block_id: str) -> list[Zombie | EnemyBase]:
+        blocks = self.units().base
+        block = self.get_block_by_id(block_id)
+        if block is None:
+            logger.error(f"Block {block_id} not found")
+            raise Exception(f"Block {block_id} not found")
+
+        max_distance = 8 if block.is_head else 4
+        targets = []
+
+        for zombie in self.units().zombies:
+            distance = abs(zombie.x - block.x) ** 2 + abs(zombie.y - block.y) ** 2
+            if distance <= max_distance * max_distance:
+                targets.append(zombie)
+
+        for enemy in self.units().enemy_blocks:
+            distance = abs(enemy.x - block.x) ** 2 + abs(enemy.y - block.y) ** 2
+            if distance <= max_distance * max_distance:
+                targets.append(enemy)
+
+        return targets
 
     def attack(self, block_id: str, target: Coordinate) -> bool:
         if not self.is_connected(block_id):
@@ -172,6 +192,8 @@ class Game:
         logger.info(f"Attacking {block_id} at {target.x}, {target.y}")
         self._attacks.append(AttackCommand(blockId=block_id, target=target))
         self._do_command = True
+
+        return True
 
     def build(self, target: Coordinate) -> bool:
         has_base = False
