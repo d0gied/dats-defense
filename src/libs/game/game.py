@@ -69,6 +69,7 @@ class Game:
         self._participate_data: ParticipateResponse | ErrorResponse | None = None
 
         self._extra_gold: int = 0  # for killing zombies
+        self._is_connected_last: int = -1
 
     def _command(self, payload: CommandPayload) -> CommandResponse | ErrorResponse:
         logger.debug(f"Sending command: {payload.model_dump(by_alias=True)}")
@@ -162,25 +163,25 @@ class Game:
 
     @timing
     def is_connected(self, block_id: str) -> bool:
-        blocks = self.units().base
-        head = self.get_head()
+        if self._is_connected_last != self.get_turn():
+            self._is_connected_last = self.get_turn()
+            self._is_connected_cache = set()
 
-        queue = [head]
-        visited: set[str] = set()
-        while queue:
-            current = queue.pop(0)
-            visited.add(current.id)
-            if current.id == block_id:
-                return True
+            head = self.get_head()
+            queue = [head]
+            visited: set[str] = set()
+            while queue:
+                current = queue.pop(0)
+                visited.add(current.id)
+                for block in self.units().base:
+                    if (
+                        block.id not in visited
+                        and abs(block.x - current.x) + abs(block.y - current.y) == 1
+                    ):
+                        queue.append(block)
+                self._is_connected_cache.add(current.id)
 
-            for block in blocks:
-                if (
-                    block.id not in visited
-                    and abs(block.x - current.x) + abs(block.y - current.y) == 1
-                ):
-                    queue.append(block)
-
-        return False
+        return block_id in self._is_connected_cache
 
     @timing
     def get_all_accessible_targets(self, block_id: str) -> list[Zombie | EnemyBase]:
@@ -190,7 +191,7 @@ class Game:
             logger.error(f"Block {block_id} not found")
             raise Exception(f"Block {block_id} not found")
 
-        max_distance = 8 if block.is_head else 4
+        max_distance = 8 if block.is_head else 5
         targets = []
 
         for zombie in self.units().zombies:
@@ -253,9 +254,9 @@ class Game:
             )
             return False
 
-        if not block.is_head and distance > 16:
+        if not block.is_head and distance > 25:
             logger.warning(
-                f"Block can only attack at distance 4, not {distance ** 0.5:.2f}"
+                f"Block can only attack at distance 5, not {distance ** 0.5:.2f}"
             )
             return False
 
@@ -276,7 +277,7 @@ class Game:
         return True
 
     @timing
-    def can_build(self, target: Coordinate) -> bool:
+    def can_build(self, target: Coordinate, no_warn: bool = False) -> bool:
         has_base = False
         free_gold = self.units().player.gold + self._extra_gold - len(self._builds)
         if free_gold < 1:
@@ -285,39 +286,45 @@ class Game:
 
         for base in self.units().base:
             if base.x == target.x and base.y == target.y:
-                logger.warning(f"Base already exists at {target.x}, {target.y}")
+                if not no_warn:
+                    logger.warning(f"Base already exists at {target.x}, {target.y}")
                 return False
             if abs(base.x - target.x) + abs(base.y - target.y) == 1:
                 has_base = True
 
         if not has_base:
-            logger.warning(f"No base nearby {target.x}, {target.y}")
+            if not no_warn:
+                logger.warning(f"No base nearby {target.x}, {target.y}")
             return False
 
         for base in self.units().enemy_blocks:
             if abs(base.x - target.x) <= 1 and abs(base.y - target.y) <= 1:
-                logger.warning(
-                    f"Enemy block({base.x}, {base.y}) too close to {target.x}, {target.y}"
-                )
+                if not no_warn:
+                    logger.warning(
+                        f"Enemy block({base.x}, {base.y}) too close to {target.x}, {target.y}"
+                    )
                 return False
 
         for zombie in self.units().zombies:
             if zombie.x == target.x and zombie.y == target.y:
-                logger.warning(
-                    f"Zombie({zombie.type}) already exists at {target.x}, {target.y}"
-                )
+                if not no_warn:
+                    logger.warning(
+                        f"Zombie({zombie.type}) already exists at {target.x}, {target.y}"
+                    )
                 return False
 
         for zpot in self.world().zpots:
             if zpot.x == target.x and zpot.y == target.y:
-                logger.warning(
-                    f"Zpot({zpot.type}) already exists at {target.x}, {target.y}"
-                )
+                if not no_warn:
+                    logger.warning(
+                        f"Zpot({zpot.type}) already exists at {target.x}, {target.y}"
+                    )
                 return False
             if abs(zpot.x - target.x) + abs(zpot.y - target.y) == 1:
-                logger.warning(
-                    f"Zpot({zpot.x}, {zpot.y}) too close to {target.x}, {target.y}"
-                )
+                if not no_warn:
+                    logger.warning(
+                        f"Zpot({zpot.x}, {zpot.y}) too close to {target.x}, {target.y}"
+                    )
                 return False
         return True
 
@@ -333,7 +340,7 @@ class Game:
     @timing
     def move_base(self, target: Coordinate) -> None:
         if self.get_base_at(target.x, target.y) is None:
-            logger.warning(f"Block already exists at {target.x}, {target.y}")
+            logger.warning(f"Block not exists at {target.x}, {target.y}")
             return
         logger.info(f"Moving base to {target.x}, {target.y}")
         self._move_base = target
@@ -444,14 +451,20 @@ class Game:
                             logger.error(e)
                     logger.info("Game started")
                 current_state = "RUNNING"
+                sum_diff = 0
                 for func in self._loop_funcs:
+                    start_time = perf_counter()
                     try:
                         await func(self)
                     except Exception as e:
                         logger.error(e)
+                    diff = perf_counter() - start_time
+                    sum_diff += diff
+                    logger.debug(f"Function {func.__name__} took {diff:.2f} seconds")
                 self.push()
+                logger.debug(f"Total loop took {sum_diff:.2f} seconds")
 
-                next_tick = self.units().turn_ends_in_ms / 1000
+                next_tick = self.units().turn_ends_in_ms / 1000 - sum_diff
             else:
                 if current_state != "DEAD":
                     for func in self._dead_funcs:

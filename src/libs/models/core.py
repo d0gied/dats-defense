@@ -18,7 +18,7 @@ class BuildCommand(Coordinate):
 
 
 class CommandPayload(BaseModel):
-    attack: list[AttackCommand] = Field(
+    attack: list[AttackCommand] | None = Field(
         ...,
         examples=[
             {
@@ -27,7 +27,7 @@ class CommandPayload(BaseModel):
             }
         ],
     )
-    build: list[BuildCommand] = Field(..., examples=[{"x": 1, "y": 1}])
+    build: list[BuildCommand] | None = Field(..., examples=[{"x": 1, "y": 1}])
     move_base: Coordinate | None = Field(
         ..., alias="moveBase", examples=[{"x": 1, "y": 1}]
     )
@@ -60,7 +60,7 @@ class CommandResponse(Response):
             }
         ],
     )
-    errors: list[str] = Field(..., examples=["coordinate at {0 0} is already occupied"])
+    errors: list[str] | None = Field(..., examples=["coordinate at {0 0} is already occupied"])
 
 
 class ParticipateResponse(Response):
