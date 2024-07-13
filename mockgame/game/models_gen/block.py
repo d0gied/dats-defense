@@ -9,6 +9,7 @@ class Block(Cell):
     last_attack: Coordinate = Field(
         ..., alias="lastAttack", examples=[Coordinate(x=1, y=1)]
     )
+    moved: bool = Field(..., examples=[True])
 
 
 class Base(Block):

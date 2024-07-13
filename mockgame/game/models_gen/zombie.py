@@ -3,9 +3,11 @@ from .cell import Cell
 
 
 class Zombie(Cell):
+    attack: int = Field(..., examples=[1])
     direction: str = Field(..., examples=["up"])
     id: str = Field(..., examples=["f47ac10b-58cc-0372-8562-0e02b2c3d479"])
     speed: int = Field(..., examples=[1])
+    health: int = Field(..., examples=[1])
     type: str = Field(..., examples=["normal"])
     wait_turns: int = Field(..., alias="waitTurns", examples=[1])
 
