@@ -10,6 +10,7 @@ from ..models.core import (
     AttackCommand,
     BuildCommand,
     Coordinate,
+    Base
 )
 from typing import Any, Callable, Awaitable, Coroutine
 from requests import post, get, put, Session
@@ -49,7 +50,7 @@ class Game:
         )
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error sending command: {resp.error}")
+            logger.error(f"Error sending command: {resp}")
             raise Exception(f"Error sending command: {resp.error}")
         return CommandResponse.model_validate(response.json())
 
@@ -60,7 +61,7 @@ class Game:
         )
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error participating: {resp.error}")
+            logger.error(f"Error participating: {resp}")
             raise Exception(f"Error participating: {resp.error}")
         return ParticipateResponse.model_validate(response.json())
 
@@ -72,7 +73,7 @@ class Game:
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error getting units data: {resp.error}")
+            logger.error(f"Error getting units data: {resp}")
             raise Exception(f"Error getting units data: {resp.error}")
         return UnitsRepsonse.model_validate(response.json())
 
@@ -84,7 +85,7 @@ class Game:
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error getting world data: {resp.error}")
+            logger.error(f"Error getting world data: {resp}")
             raise Exception(f"Error getting world data: {resp.error}")
         return WorldResponse.model_validate(response.json())
 
@@ -96,9 +97,43 @@ class Game:
 
         if response.status_code != 200:
             resp = ErrorResponse.model_validate(response.json())
-            logger.error(f"Error getting rounds data: {resp.error}")
+            logger.error(f"Error getting rounds data: {resp}")
             raise Exception(f"Error getting rounds data: {resp.error}")
         return RoundsResponse.model_validate(response.json())
+
+    def get_base_at(self, x: int, y: int) -> Base | None:
+        for base in self.units().base:
+            if base.x == x and base.y == y:
+                return base
+        return None
+
+    def is_connected(self, block_id: str) -> bool:
+        blocks = self.units().base
+        head: Base | None = None
+        for block in blocks:
+            if block.is_head:
+                head = block
+                break
+
+        if head is None:
+            logger.error("No head block found")
+            raise Exception("No head block found")
+            return False
+
+        queue = [head]
+        visited = set()
+        while queue:
+            current = queue.pop(0)
+            visited.add(current)
+            if current.id == block_id:
+                return True
+
+            for block in blocks:
+                if block not in visited and abs(block.x - current.x) + abs(block.y - current.y) == 1:
+                    queue.append(block)
+
+        return False
+
 
     def attack(self, block_id: str, target: Coordinate) -> None:
         logger.info(f"Attacking {block_id} at {target.x}, {target.y}")
