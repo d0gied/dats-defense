@@ -1,4 +1,6 @@
 from config import Config
+from libs.models.block import EnemyBase
+from libs.models.zombie import Zombie
 from ..models.core import (
     CommandPayload,
     CommandResponse,
@@ -101,6 +103,18 @@ class Game:
             raise Exception(f"Error getting rounds data: {resp.error}")
         return RoundsResponse.model_validate(response.json())
 
+    def get_head(self) -> Base | None:
+        for block in self.units().base:
+            if block.is_head:
+                return block
+        return None
+
+    def get_block_by_id(self, block_id: str) -> Base | None:
+        for block in self.units().base:
+            if block.id == block_id:
+                return block
+        return None
+
     def get_base_at(self, x: int, y: int) -> Base | None:
         for base in self.units().base:
             if base.x == x and base.y == y:
@@ -134,8 +148,15 @@ class Game:
 
         return False
 
+    def get_all_accessible_targets(self, block_id: str) -> list[Zombie | EnemyBase]: ...
 
-    def attack(self, block_id: str, target: Coordinate) -> None:
+    def attack(self, block_id: str, target: Coordinate) -> bool:
+        if not self.is_connected(block_id):
+            logger.warning(f"Block {block_id} is not connected to the head")
+            return False
+
+
+
         logger.info(f"Attacking {block_id} at {target.x}, {target.y}")
         self._attacks.append(AttackCommand(blockId=block_id, target=target))
         self._do_command = True
