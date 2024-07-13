@@ -10,9 +10,7 @@ Big Data Small Memory
 .env file
 ```bash
 # .env
-TELEGRAM_BOT_TOKEN=
-TELEGRAM_CHAT_ID=
-TELEGRAM_TOPIC_ID=
+TEAM_TOKEN=
 ```
 
 ```bash

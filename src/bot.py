@@ -3,6 +3,8 @@ from libs.models.block import Base
 from libs.models.cell import Coordinate
 from loguru import logger
 
+from libs.models.zombie import Zombie
+
 PRIORITIES = {
     "normal": 1,
     "fast": 2,
@@ -54,15 +56,22 @@ async def loop(game: Game) -> None:
         target = await find_target(game, base)
         if target is not None:
             game.attack(block_id=base.id, target=target)
+            logger.info(f"Attacking {target} with base {base.id}")
+            for unit in game.get_units_at(target):
+                if isinstance(unit, (EnemyBase, Zombie)):
+                    game.attack(block_id=base.id, target=target)
+                    logger.info(f"Attacking {unit} with damage {base.attack}")
+
     logger.info(f"Current gold: {game.get_gold()}")
 
-    most_alive: Base = game.units().base[0]
-    for base in game.units().base:
+    most_alive: Base = head
+    for base in full_base:
         if base.health > most_alive.health:
             most_alive = base
-
-    game.move_base(Coordinate(x=most_alive.x, y=most_alive.y))
-
+    if most_alive.id != head.id:
+        new_head_pos = Coordinate(x=most_alive.x, y=most_alive.y)
+        game.move_base(new_head_pos)
+        logger.info(f"Moving base to {new_head_pos}")
 
 async def dead(game: Game) -> None:
     logger.info(f"Game ended with {game.units().player.gold} points")

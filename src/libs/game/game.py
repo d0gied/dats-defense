@@ -365,7 +365,8 @@ class Game:
                 attack=self._attacks, build=self._builds, moveBase=self._move_base
             )
             logger.info("Pushing command")
-            self._command(payload)
+            result = self._command(payload)
+            logger.debug(result)
 
     def start(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
         self._start_funcs.append(func)
