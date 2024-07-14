@@ -1,3 +1,4 @@
+from numpy import random
 from libs.game.game import Game, EnemyBase, AttackCommand
 from libs.models.block import Base
 from libs.models.cell import Coordinate
@@ -12,7 +13,7 @@ PRIORITIES = {
     "liner": 6,
     "juggernaut": 5,
     "chaos_knight": 3,
-    "enemy": 1,
+    "enemy": 2,
 }
 
 gold_history = []
@@ -20,12 +21,13 @@ gold_history = []
 async def start(game: Game) -> None:
     global gold_history
     gold_history = []
+    target_spot = game.get_head().x, game.get_head().y
 
 async def find_target(game: Game, base: Base, hps: dict[tuple[int, int], int]) -> Coordinate | None:
     possible_targets: dict[tuple[int, int], int] = {}
     for unit in game.get_all_accessible_targets(base.id):
         if isinstance(unit, EnemyBase):
-            priority = PRIORITIES["enemy"] + abs(unit.x - base.x) + abs(unit.y - base.y) + hps.get((unit.x, unit.y), 0)
+            priority = PRIORITIES["enemy"] +  1 / (abs(unit.x - base.x) + abs(unit.y - base.y)) + hps.get((unit.x, unit.y), 0)
             priority = priority if hps.get((unit.x, unit.y), 0) > 0 else 0
             possible_targets[(unit.x, unit.y)] = (
                 possible_targets.get((unit.x, unit.y), 0) + priority
@@ -35,7 +37,7 @@ async def find_target(game: Game, base: Base, hps: dict[tuple[int, int], int]) -
                 logger.warning(
                     f"Unknown unit type: {unit.type}, setting priority to 10"
                 )
-            priority = PRIORITIES.get(unit.type, 10) + abs(unit.x - base.x) + abs(unit.y - base.y) + hps.get((unit.x, unit.y), 0)
+            priority = PRIORITIES.get(unit.type, 10) + 1 / (abs(unit.x - base.x) + abs(unit.y - base.y)) + hps.get((unit.x, unit.y), 0)
             priority = priority if hps.get((unit.x, unit.y), 0) > 0 else 0
             possible_targets[(unit.x, unit.y)] = (
                 possible_targets.get((unit.x, unit.y), 0) + priority
@@ -53,6 +55,8 @@ async def loop(game: Game) -> None:
     global gold_history
     current_base = game.get_all_connected()
     full_base = game.units().base
+    logger.info(f"Full base: {len(full_base)}")
+    logger.info(f"Current base: {len(current_base)}")
     head = game.get_head()
     gold_history.append(game.get_gold())
 
@@ -77,22 +81,18 @@ async def loop(game: Game) -> None:
     logger.info(f"Current gold: {game.get_gold()}")
 
 
-    center_of_mass = [0, 0]
+    coords: dict[tuple[int, int], int] = {}
     for base in full_base:
-        center_of_mass[0] += base.x
-        center_of_mass[1] += base.y
+        amount = 0
+        for tile in full_base:
+            if base.id != tile.id and abs(base.x - tile.x) ** 2 + abs(base.y - tile.y) ** 2 <= 5:
+                amount += 1
+        coords[(base.x, base.y)] = amount
 
-    center_of_mass[0] = round(center_of_mass[0] / len(current_base))
-    center_of_mass[1] = round(center_of_mass[1] / len(current_base))
-
-    closest = head
-    min_distance = 1000000
-    for base in full_base:
-        distance = abs(base.x - center_of_mass[0]) + abs(base.y - center_of_mass[1])
-        if distance < min_distance:
-            min_distance = distance
-            closest = base
-    game.move_base(Coordinate(x=closest.x, y=closest.y))
+    best = max(coords.items(), key=lambda x: (x[1], random.randint(1, 100)))
+    best = Coordinate(x=best[0][0], y=best[0][1])
+    logger.info(f"Moving base to {best}")
+    game.move_base(best)
 
     min_x = min([base.x for base in full_base]) - 2
     min_y = min([base.y for base in full_base]) - 2
@@ -106,15 +106,16 @@ async def loop(game: Game) -> None:
         matrix[base.y - min_y - 1][base.x - min_x + 1] += 1
         matrix[base.y - min_y + 1][base.x - min_x + 1] += 1
 
-    cells_to_build: list[tuple[int, Coordinate]] = []
+    cells_to_build: list[tuple[tuple[int, int], Coordinate]] = []
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if matrix[i][j] != 0 and game.can_build(Coordinate(x=j + min_x, y=i + min_y), no_warn=True):
-                cells_to_build.append((matrix[i][j], (Coordinate(x=j + min_x, y=i + min_y))))
+                dst = 0
+                cells_to_build.append(((matrix[i][j], -dst), (Coordinate(x=j + min_x, y=i + min_y))))
 
-    cells_to_build.sort(key=lambda x: x[0], reverse=True)
+    cells_to_build.sort(key=lambda x: (x[0], random.randint(1, 100)), reverse=True)
     gold = game.get_gold(extra=False)
-    should_left = round((sum(gold_history[:5]) / len(gold_history[:5])) * 0.3)
+    should_left = round((sum(gold_history[:3]) / len(gold_history[:3])) * 0.2)
     logger.info(f"Should left: {should_left}")
     free_gold = max(gold - should_left, 0)
     logger.info(f"Free gold: {free_gold}")

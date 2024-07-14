@@ -172,6 +172,8 @@ class Game:
             visited: set[str] = set()
             while queue:
                 current = queue.pop(0)
+                if current.id in visited:
+                    continue
                 visited.add(current.id)
                 for block in self.units().base:
                     if (
@@ -224,6 +226,8 @@ class Game:
         connected = []
         while queue:
             current = queue.pop(0)
+            if current.id in visited:
+                continue
             visited.add(current.id)
             connected.append(current)
 
