@@ -1,4 +1,4 @@
-from numpy import random
+import random
 from libs.game.game import Game, EnemyBase, AttackCommand
 from libs.models.block import Base
 from libs.models.cell import Coordinate
@@ -129,8 +129,6 @@ async def loop(game: Game) -> None:
             built += 1
             logger.info(f"Building base at {top_cells[current_to_build - 1][1]}")
     logger.info(f"Built {built} bases")
-
-
 
 async def dead(game: Game) -> None:
     logger.info(f"Game ended with {game.units().player.gold} points")

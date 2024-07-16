@@ -1,3 +1,4 @@
+from functools import wraps
 from config import Config
 from libs.models.block import EnemyBase
 from libs.models.zombie import Zombie
@@ -22,37 +23,36 @@ import asyncio
 from loguru import logger
 from time import perf_counter
 from fastapi import FastAPI
+from .api import GameApi
 
 TAsyncGameFunc = Callable[["Game"], Coroutine[Any, Any, None]]
 
 
-async def mock_func(game: "Game") -> None:
-    pass
+async def mock_func(game: "Game") -> None: ...
 
 
 BASE_DAMAGE = 10
 HEAD_DAMAGE = 40
 
-
-def timing(func: Any) -> Any:
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
+def timing(func):
+    def wrapper(*args: Any, **kwargs: Any):
         start_time = perf_counter()
         result = func(*args, **kwargs)
         logger.debug(
             f"{func.__name__} executed in {perf_counter() - start_time:.6f} seconds"
         )
         return result
+    return wraps(func)(wrapper)
 
-    return wrapper
 
 
 class Game:
     def __init__(
         self,
         *,
-        api_base_url: str = Config.Server.API_BASE_URL,
+        api: GameApi
     ) -> None:
-        self._api_base_url = api_base_url.strip("/") + "/"
+        self._api = api
 
         self._do_command: bool = False
         self._attacks: list[AttackCommand] = []
@@ -64,80 +64,12 @@ class Game:
         self._waiting_funcs: list[TAsyncGameFunc] = []
         self._dead_funcs: list[TAsyncGameFunc] = []
 
-        self._units_data: UnitsRepsonse | ErrorResponse | None = None
-        self._world_data: WorldResponse | ErrorResponse | None = None
-        self._participate_data: ParticipateResponse | ErrorResponse | None = None
+        self._units_data: UnitsRepsonse | ErrorResponse
+        self._world_data: WorldResponse | ErrorResponse
+        self._participate_data: ParticipateResponse | ErrorResponse
 
         self._extra_gold: int = 0  # for killing zombies
         self._is_connected_last: int = -1
-
-    def _command(self, payload: CommandPayload) -> CommandResponse | ErrorResponse:
-        logger.debug(f"Sending command: {payload.model_dump(by_alias=True)}")
-        response = post(
-            self._api_base_url + "play/zombidef/command",
-            json=payload.model_dump(by_alias=True),
-            headers={"X-Auth-Token": Config.Server.TOKEN},
-        )
-        if not response.text:
-            return ErrorResponse(errCode=-1, error="No response")
-        if response.status_code != 200:
-            resp = ErrorResponse.model_validate(response.json())
-            logger.debug(f"Error sending command: {resp}")
-            raise Exception(f"Error sending command: {resp.error}")
-        return CommandResponse.model_validate(response.json())
-
-    def _participate(self) -> ParticipateResponse | ErrorResponse:
-        response = put(
-            self._api_base_url + "play/zombidef/participate",
-            headers={"X-Auth-Token": Config.Server.TOKEN},
-        )
-        if not response.text:
-            return ErrorResponse(errCode=-1, error="No response")
-        if response.status_code != 200:
-            resp = ErrorResponse.model_validate(response.json())
-            logger.debug(f"Error participating: {resp}")
-            return resp
-        return ParticipateResponse.model_validate(response.json())
-
-    def _units(self) -> UnitsRepsonse | ErrorResponse:
-        response = get(
-            self._api_base_url + "play/zombidef/units",
-            headers={"X-Auth-Token": Config.Server.TOKEN},
-        )
-        if not response.text:
-            return ErrorResponse(errCode=-1, error="No response")
-
-        if response.status_code != 200:
-            resp = ErrorResponse.model_validate(response.json())
-            logger.debug(f"Error getting units data: {resp}")
-            return resp
-        return UnitsRepsonse.model_validate(response.json())
-
-    def _world(self) -> WorldResponse | ErrorResponse:
-        response = get(
-            self._api_base_url + "play/zombidef/world",
-            headers={"X-Auth-Token": Config.Server.TOKEN},
-        )
-        if not response.text:
-            return ErrorResponse(errCode=-1, error="No response")
-
-        if response.status_code != 200:
-            resp = ErrorResponse.model_validate(response.json())
-            logger.debug(f"Error getting world data: {resp}")
-            return resp
-        return WorldResponse.model_validate(response.json())
-
-    def _rounds(self) -> RoundsResponse:
-        response = get(
-            self._api_base_url + "rounds/zombidef",
-            headers={"X-Auth-Token": Config.Server.TOKEN},
-        )
-
-        if response.status_code != 200:
-            resp = ErrorResponse.model_validate(response.json())
-            logger.debug(f"Error getting rounds data: {resp}")
-            raise Exception(f"Error getting rounds data: {resp.error}")
-        return RoundsResponse.model_validate(response.json())
 
     @timing
     def get_head(self) -> Base:
@@ -211,7 +143,7 @@ class Game:
     def get_turn(self) -> int:
         return self.units().turn
 
-    def get_gold(self, extra=True) -> int:
+    def get_gold(self, extra: bool = True) -> int:
         if extra:
             return self.units().player.gold + extra
         return self.units().player.gold
@@ -351,38 +283,22 @@ class Game:
         self._do_command = True
 
     def units(self) -> UnitsRepsonse:
-        if self._units_data is None:
-            resp = self._units()
-            self._units_data = resp
         if isinstance(self._units_data, ErrorResponse):
             raise Exception(f"Error: {self._units_data.error}")
         return self._units_data
 
     def world(self) -> WorldResponse:
-        if self._world_data is None:
-            resp = self._world()
-            self._world_data = resp
         if isinstance(self._world_data, ErrorResponse):
             raise Exception(f"Error: {self._world_data.error}")
         return self._world_data
 
-    def get_units_at(self, coord: Coordinate) -> list[EnemyBase | Base | Zombie | ZPot]:
-        return [
-            unit
-            for unit in self.units().base
-            + self.units().enemy_blocks
-            + self.units().zombies
-            + self.world().zpots
-            if unit.x == coord.x and unit.y == coord.y
-        ]
-
-    def push(self) -> None:
+    async def push(self) -> None:
         if self._do_command:
             payload = CommandPayload(
                 attack=self._attacks, build=self._builds, moveBase=self._move_base
             )
             logger.info("Pushing command")
-            result = self._command(payload)
+            result = await self._api.command(payload)
             logger.debug(result)
 
     def start(self, func: TAsyncGameFunc) -> TAsyncGameFunc:
@@ -414,9 +330,10 @@ class Game:
         logger.info("Loop started")
 
         while True:
-            self._units_data = self._units()
-            self._world_data = self._world()
-            self._participate_data = self._participate()
+            self._units_data = await self._api.units()
+            self._world_data = await self._api.world()
+            self._participate_data = await self._api.participate()
+
             next_tick: float = 2
 
             if isinstance(self._participate_data, ParticipateResponse):
@@ -441,6 +358,9 @@ class Game:
                         logger.error(e)
 
             elif isinstance(self._units_data, UnitsRepsonse) and self._units_data.base:
+                latency = 2000 - self.units().turn_ends_in_ms
+                logger.debug(f"Step latency is {latency} ms")
+
                 self._attacks = []
                 self._builds = []
                 self._move_base = None
@@ -465,7 +385,7 @@ class Game:
                     diff = perf_counter() - start_time
                     sum_diff += diff
                     logger.debug(f"Function {func.__name__} took {diff:.2f} seconds")
-                self.push()
+                await self.push()
                 logger.debug(f"Total loop took {sum_diff:.2f} seconds")
 
                 next_tick = self.units().turn_ends_in_ms / 1000 - sum_diff

@@ -1,6 +1,7 @@
 from libs.alerts import AlertManager
 from argparse import ArgumentParser
 from libs.game.game import Game, CommandPayload
+from libs.game.api import GameApi
 from libs.models.core import (
     AttackCommand,
     Coordinate,
@@ -13,7 +14,7 @@ from libs.models.core import (
 from config import Config
 from loguru import logger
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, background
 import asyncio
 import sys
 
@@ -68,7 +69,7 @@ parser.add_argument(
     help="Start the api",
 )
 
-if __name__ == "__main__":
+async def main(loop: asyncio.AbstractEventLoop):
     # BASE_URL = "http://127.0.0.1:8000/"
     args = parser.parse_args()
     BASE_URL = Config.Server.API_BASE_URL
@@ -77,69 +78,84 @@ if __name__ == "__main__":
     if args.mode == "local":
         BASE_URL = "http://127.0.0.1:8001/"
 
-    game = Game(api_base_url=BASE_URL)
+    async with GameApi(api_base_url=BASE_URL) as api:
+        game = Game(api=api)
+        if args.participate:
+            resp = await api.participate()
+            print(json.dumps(resp.model_dump(), indent=4))
+        if args.units:
+            units = await api.units()
+            print(json.dumps(units.model_dump(), indent=4))
+        if args.world:
+            world = await api.world()
+            print(json.dumps(world.model_dump(), indent=4))
+        if args.rounds:
+            rounds = await api.rounds()
+            print(json.dumps(rounds.model_dump(), indent=4))
+
+        run_forever = False
+
+        if args.bot:
+            from bot import (
+                start as bot_start,
+                loop as bot_loop,
+                dead as bot_dead,
+                waiting as bot_waiting,
+            )
+
+
+            game.start(bot_start)
+            game.loop(bot_loop)
+            game.dead(bot_dead)
+            game.waiting(bot_waiting)
+            run_forever = True
+
+
+        if args.daemon:
+            from daemon import start as bot_start, loop as bot_loop, waiting as bot_waiting
+
+            game.start(bot_start)
+            game.loop(bot_loop)
+            game.waiting(bot_waiting)
+            run_forever = True
+
+
+        if args.api:
+            from uvicorn import Config as UvicornConfig
+            from uvicorn.server import Server
+            from fastapi.middleware.cors import CORSMiddleware
+
+            logger.info("Starting API")
+            app = FastAPI()
+            app.add_middleware(
+                CORSMiddleware,
+                allow_origins=["*"],
+                allow_credentials=True,
+                allow_methods=["*"],
+                allow_headers=["*"],
+            )
+
+            @app.get("/play/zombidef/units")
+            async def app_units() -> UnitsRepsonse | ErrorResponse:
+                return game._units_data  # type: ignore
+
+            @app.get("/play/zombidef/world")
+            async def app_world() -> WorldResponse | ErrorResponse:
+                return game._world_data  # type: ignore
+
+            @app.post("/play/zombidef/participate")
+            async def app_participate() -> ParticipateResponse | ErrorResponse:
+                return game._participate_data  # type: ignore
+
+            config = UvicornConfig(app=app, log_level="critical")
+            server = Server(config)
+            loop.create_task(server.serve())
+            run_forever = True
+        if run_forever:
+            await game._run()
+
+
+if __name__ == "__main__":
     loop = asyncio.new_event_loop()
-    loop.create_task(game._run())
-
-    if args.participate:
-        resp = game._participate()
-        print(json.dumps(resp.model_dump(), indent=4))
-    if args.units:
-        units = game._units()
-        print(json.dumps(units.model_dump(), indent=4))
-    if args.world:
-        world = game._world()
-        print(json.dumps(world.model_dump(), indent=4))
-    if args.rounds:
-        rounds = game._rounds()
-        print(json.dumps(rounds.model_dump(), indent=4))
-    if args.bot:
-        from bot import (
-            start as bot_start,
-            loop as bot_loop,
-            dead as bot_dead,
-            waiting as bot_waiting,
-        )
-
-        game.start(bot_start)
-        game.loop(bot_loop)
-        game.dead(bot_dead)
-        game.waiting(bot_waiting)
-    if args.daemon:
-        from daemon import start as bot_start, loop as bot_loop, waiting as bot_waiting
-
-        game.start(bot_start)
-        game.loop(bot_loop)
-        game.waiting(bot_waiting)
-    if args.api:
-        from uvicorn import Config as UvicornConfig
-        from uvicorn.server import Server
-        from fastapi.middleware.cors import CORSMiddleware
-
-        logger.info("Starting API")
-        app = FastAPI()
-        app.add_middleware(
-            CORSMiddleware,
-            allow_origins=["*"],
-            allow_credentials=True,
-            allow_methods=["*"],
-            allow_headers=["*"],
-        )
-
-        @app.get("/play/zombidef/units")
-        async def units() -> UnitsRepsonse | ErrorResponse:
-            return game._units_data  # type: ignore
-
-        @app.get("/play/zombidef/world")
-        async def world() -> WorldResponse | ErrorResponse:
-            return game._world_data  # type: ignore
-
-        @app.post("/play/zombidef/participate")
-        async def participate() -> ParticipateResponse | ErrorResponse:
-            return game._participate_data  # type: ignore
-
-        config = UvicornConfig(app=app, log_level="critical")
-        server = Server(config)
-        loop.create_task(server.serve())
-
-    loop.run_forever()
+    if asyncio.run(main(loop)):
+        loop.run_forever()
