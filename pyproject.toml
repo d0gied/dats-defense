@@ -13,12 +13,8 @@ venvPath = "."
 
 [tool.poetry.dependencies]
 python = "^3.12"
-aiogram = "^3.10.0"
-pydantic = "^2.8.2"
-configloader = { git = "https://gitea.d0gied.ru/d0gied/configloader" }
-requests = "^2.32.3"
-fastapi = { extras = ["uvicorn"], version = "^0.111.0" }
-loguru = "^0.7.2"
+libs = { path = "./libs", develop = true }
+core = { path = "./services/core", develop = true }
 
 
 [build-system]

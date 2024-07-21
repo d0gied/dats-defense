@@ -22,17 +22,18 @@ async def waiting(game: Game) -> None: ...
 
 async def start(game: Game) -> None:
     global filename
-    filename = f"{game.units().realm_name}.json"
-    data = {"world": game.world().model_dump(by_alias=True), "steps": []}
+    filename = f"{game.units.realm_name}.json"
+    data = {"world": game.world.model_dump(by_alias=True), "steps": []}
     with open(filename, "w") as f:
         f.write(json.dumps(data, indent=4))
 
 
 async def loop(game: Game) -> None:
-    units = game.units()
+    units = game.units
+    units = units.model_dump(by_alias=True)
 
-    prev_data = json.loads(open(filename, "r").read())
-    prev_data["steps"].append(units.model_dump(by_alias=True))
+    # prev_data = json.loads(open(filename, "r").read())
+    # prev_data["steps"].append(units.model_dump(by_alias=True))
 
-    with open(filename, "w") as f:
-        f.write(json.dumps(prev_data, indent=4))
+    # with open(filename, "w") as f:
+    #     f.write(json.dumps(prev_data, indent=4))

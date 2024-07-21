@@ -18,16 +18,24 @@ PRIORITIES = {
 
 gold_history = []
 
+
 async def start(game: Game) -> None:
     global gold_history
     gold_history = []
     target_spot = game.get_head().x, game.get_head().y
 
-async def find_target(game: Game, base: Base, hps: dict[tuple[int, int], int]) -> Coordinate | None:
+
+async def find_target(
+    game: Game, base: Base, hps: dict[tuple[int, int], int]
+) -> Coordinate | None:
     possible_targets: dict[tuple[int, int], int] = {}
     for unit in game.get_all_accessible_targets(base.id):
         if isinstance(unit, EnemyBase):
-            priority = PRIORITIES["enemy"] +  1 / (abs(unit.x - base.x) + abs(unit.y - base.y)) + hps.get((unit.x, unit.y), 0)
+            priority = (
+                PRIORITIES["enemy"]
+                + 1 / (abs(unit.x - base.x) + abs(unit.y - base.y))
+                + hps.get((unit.x, unit.y), 0)
+            )
             priority = priority if hps.get((unit.x, unit.y), 0) > 0 else 0
             possible_targets[(unit.x, unit.y)] = (
                 possible_targets.get((unit.x, unit.y), 0) + priority
@@ -37,7 +45,11 @@ async def find_target(game: Game, base: Base, hps: dict[tuple[int, int], int]) -
                 logger.warning(
                     f"Unknown unit type: {unit.type}, setting priority to 10"
                 )
-            priority = PRIORITIES.get(unit.type, 10) + 1 / (abs(unit.x - base.x) + abs(unit.y - base.y)) + hps.get((unit.x, unit.y), 0)
+            priority = (
+                PRIORITIES.get(unit.type, 10)
+                + 1 / (abs(unit.x - base.x) + abs(unit.y - base.y))
+                + hps.get((unit.x, unit.y), 0)
+            )
             priority = priority if hps.get((unit.x, unit.y), 0) > 0 else 0
             possible_targets[(unit.x, unit.y)] = (
                 possible_targets.get((unit.x, unit.y), 0) + priority
@@ -50,6 +62,7 @@ async def find_target(game: Game, base: Base, hps: dict[tuple[int, int], int]) -
 
     logger.info(f"Base {base.id} is attacking {target} with priority {priority}")
     return target
+
 
 async def loop(game: Game) -> None:
     global gold_history
@@ -80,12 +93,14 @@ async def loop(game: Game) -> None:
     logger.info(f"Max overlap: {max(targets.values()) if targets else 0}")
     logger.info(f"Current gold: {game.get_gold()}")
 
-
     coords: dict[tuple[int, int], int] = {}
     for base in full_base:
         amount = 0
         for tile in full_base:
-            if base.id != tile.id and abs(base.x - tile.x) ** 2 + abs(base.y - tile.y) ** 2 <= 5:
+            if (
+                base.id != tile.id
+                and abs(base.x - tile.x) ** 2 + abs(base.y - tile.y) ** 2 <= 5
+            ):
                 amount += 1
         coords[(base.x, base.y)] = amount
 
@@ -109,9 +124,13 @@ async def loop(game: Game) -> None:
     cells_to_build: list[tuple[tuple[int, int], Coordinate]] = []
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
-            if matrix[i][j] != 0 and game.can_build(Coordinate(x=j + min_x, y=i + min_y), no_warn=True):
+            if matrix[i][j] != 0 and game.can_build(
+                Coordinate(x=j + min_x, y=i + min_y), no_warn=True
+            ):
                 dst = 0
-                cells_to_build.append(((matrix[i][j], -dst), (Coordinate(x=j + min_x, y=i + min_y))))
+                cells_to_build.append(
+                    ((matrix[i][j], -dst), (Coordinate(x=j + min_x, y=i + min_y)))
+                )
 
     cells_to_build.sort(key=lambda x: (x[0], random.randint(1, 100)), reverse=True)
     gold = game.get_gold(extra=False)
@@ -123,12 +142,17 @@ async def loop(game: Game) -> None:
     built = 0
     current_to_build = 0
     while built < free_gold and current_to_build < len(top_cells):
-        could = game.build(Coordinate(x=top_cells[current_to_build][1].x, y=top_cells[current_to_build][1].y))
+        could = game.build(
+            Coordinate(
+                x=top_cells[current_to_build][1].x, y=top_cells[current_to_build][1].y
+            )
+        )
         current_to_build += 1
         if could:
             built += 1
             logger.info(f"Building base at {top_cells[current_to_build - 1][1]}")
     logger.info(f"Built {built} bases")
+
 
 async def dead(game: Game) -> None:
     logger.info(f"Game ended with {game.units().player.gold} points")

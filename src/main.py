@@ -1,7 +1,7 @@
 from libs.alerts import AlertManager
 from argparse import ArgumentParser
 from libs.game.game import Game, CommandPayload
-from libs.game.api import GameApi
+from libs.game.api import ServerApi
 from libs.models.core import (
     AttackCommand,
     Coordinate,
@@ -11,6 +11,9 @@ from libs.models.core import (
     UnitsRepsonse,
     WorldResponse,
 )
+from libs.metrics.client import MetricsClient
+from libs.game.dispatcher import GameDispatcher
+
 from config import Config
 from loguru import logger
 import json
@@ -68,6 +71,25 @@ parser.add_argument(
     action="store_true",
     help="Start the api",
 )
+parser.add_argument(
+    "--test-metrics",
+    action="store_true",
+    help="Test the metrics",
+)
+parser.add_argument(
+    "--round",
+    action="store_true",
+    help="Get the current round",
+)
+parser.add_argument(
+    "--next-round",
+    action="store_true",
+    help="Get the next round",
+)
+parser.add_argument(
+    "--alert", action="store", help="Send an alert")
+
+
 
 async def main(loop: asyncio.AbstractEventLoop):
     # BASE_URL = "http://127.0.0.1:8000/"
@@ -78,47 +100,55 @@ async def main(loop: asyncio.AbstractEventLoop):
     if args.mode == "local":
         BASE_URL = "http://127.0.0.1:8001/"
 
-    async with GameApi(api_base_url=BASE_URL) as api:
-        game = Game(api=api)
-        if args.participate:
-            resp = await api.participate()
-            print(json.dumps(resp.model_dump(), indent=4))
-        if args.units:
-            units = await api.units()
-            print(json.dumps(units.model_dump(), indent=4))
-        if args.world:
-            world = await api.world()
-            print(json.dumps(world.model_dump(), indent=4))
-        if args.rounds:
-            rounds = await api.rounds()
-            print(json.dumps(rounds.model_dump(), indent=4))
+    async with ServerApi(api_base_url=BASE_URL) as api:
+        dp = GameDispatcher(api=api)
 
-        run_forever = False
-
-        if args.bot:
-            from bot import (
-                start as bot_start,
-                loop as bot_loop,
-                dead as bot_dead,
-                waiting as bot_waiting,
+        if args.alert:
+            async with AlertManager() as alert:
+                await alert.send_alert(str(args.alert))
+        if args.test_metrics:
+            metrics = MetricsClient(
+                host="localhost",
+                port=8086
+            )
+            await metrics.push_rate(
+                measurement="test",
+                tags={"test": "test"},
+                fields={"test": "1"},
             )
 
+        if args.participate:
+            resp = await api.participate()
+            print(resp.model_dump_json(indent=4))
+        if args.units:
+            units = await api.units()
+            print(units.model_dump_json(indent=4))
+        if args.world:
+            world = await api.world()
+            print(world.model_dump_json(indent=4))
+        if args.rounds:
+            rounds = await api.rounds()
+            print(rounds.model_dump_json(indent=4))
 
-            game.start(bot_start)
-            game.loop(bot_loop)
-            game.dead(bot_dead)
-            game.waiting(bot_waiting)
-            run_forever = True
+        if args.round:
+            round = await dp.current_round()
+            if round:
+                if round.status == "not started":
+                    print(f"NEXT | NOT STARTED | Starts in {round.starts_in()}")
+                elif round.status == "active":
+                    print(f"CURRENT | RUNNING | Ends in {round.ends_in()}")
+                    next = await dp.next_round()
+                    if next:
+                        print(f"NEXT | NOT STARTED | Starts in {next.starts_in()}")
 
 
-        if args.daemon:
-            from daemon import start as bot_start, loop as bot_loop, waiting as bot_waiting
 
-            game.start(bot_start)
-            game.loop(bot_loop)
-            game.waiting(bot_waiting)
-            run_forever = True
+        if args.next_round:
+            round = await dp.next_round()
+            if round:
+                print(json.dumps(round.model_dump(), indent=4))
 
+        run_forever = False
 
         if args.api:
             from uvicorn import Config as UvicornConfig
@@ -150,9 +180,7 @@ async def main(loop: asyncio.AbstractEventLoop):
             config = UvicornConfig(app=app, log_level="critical")
             server = Server(config)
             loop.create_task(server.serve())
-            run_forever = True
-        if run_forever:
-            await game._run()
+
 
 
 if __name__ == "__main__":
